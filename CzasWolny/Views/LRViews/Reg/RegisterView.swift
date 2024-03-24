@@ -8,7 +8,7 @@ struct RegisterView: View {
     @Environment(\.dismiss)var dismiss
     @EnvironmentObject var vm : UsersViewModel
     @State var cancellable: AnyCancellable?
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -58,75 +58,102 @@ struct RegisterView: View {
                 // This is your button for submitting the form.
                 Button {
                     vm.isLoading = true
-                    if vm.isValidEmail(vm.email) {
-                        let url = URL(string: "https://api.hunter.io/v2/email-verifier?email=\(vm.email)&api_key=5fcbeee2f1413e6ba1f0d979c71be8a35a81e4db")!
-                        cancellable = URLSession.shared.dataTaskPublisher(for: url)
-                            .map { $0.data }
-                            .decode(type: ApiResponse.self, decoder: JSONDecoder())
-                            .receive(on: DispatchQueue.main)
-                            .sink(receiveCompletion: { _ in }, receiveValue: { response in
-                                if response.data.status != "valid" {
-                                    vm.fetchErrorAlert = true
-                                    vm.isLoading = false
-                                }
-                                else {
-                                    vm.verifiCode = true
-                                    vm.isLoading = false
-                                }
-                            })
+                    if !vm.isValidEmail(vm.email){
+                            vm.isLoading = false
+                            vm.showingAlert = true
                     }
-                    else {
-                        vm.isLoading = false
-                        vm.showingAlert = true
+                    else{
+                        
+                        vm.checkIfUserExists(completion: { status in
+                            vm.existingStatus = status
+                            if vm.existingStatus == 1{
+                                vm.isLoading = false
+                                vm.userExists = true
+                                vm.email = ""
+                            }
+                            else{
+                                let url = URL(string: "https://api.hunter.io/v2/email-verifier?email=\(vm.email)&api_key=5fcbeee2f1413e6ba1f0d979c71be8a35a81e4db")!
+                                cancellable = URLSession.shared.dataTaskPublisher(for: url)
+                                    .map { $0.data }
+                                    .decode(type: ApiResponse.self, decoder: JSONDecoder())
+                                    .receive(on: DispatchQueue.main)
+                                    .sink(receiveCompletion: { _ in }, receiveValue: { response in
+                                        if response.data.status != "valid" {
+                                            vm.fetchErrorAlert = true
+                                            vm.isLoading = false
+                                        }
+                                        else {
+                                            vm.verifiCode = true
+                                            vm.isLoading = false
+                                        }
+                                    })
+                            }
+                        })
                     }
-                } label: {
-                    Label("Done", systemImage: vm.isLoading ? "hourglass" : "arrowshape.right")
-                        .labelStyle(.iconOnly)
-                        .font(.system(size: 27 , weight: .bold))
-                        .foregroundStyle(Color.white)
                 }
-                .frame(width: 100, height: 60)
-                .background(Color("BlueAccent"))
-                .clipShape(.rect(cornerRadius: 15))
-                .padding(.bottom,5)
-                .opacity(vm.textOpacity)
-                .alertX(isPresented: $vm.showingAlert, content: {
-                    AlertX(title: Text("Błąd"),message:Text ("Wprowadzony adres email jest nieprawidłowy lub nie należy do 'edu.p.lodz.pl'"),theme: AlertX.Theme.custom(windowColor: Color.white,
-                                                                                                                                                                        alertTextColor: Color("BlueAccent"),
-                                                                                                                                                                        enableShadow: true,
-                                                                                                                                                                        enableRoundedCorners: true,
-                                                                                                                                                                        enableTransparency: false,
-                                                                                                                                                                        cancelButtonColor: Color("BlueAccent2"),
-                                                                                                                                                                        cancelButtonTextColor: Color.white,
-                                                                                                                                                                        defaultButtonColor: Color("BlueAccent2"),
-                                                                                                                                                                        defaultButtonTextColor: Color("BlueAccent"),
-                                                                                                                                                                        roundedCornerRadius: 20),
-                           animation: .classicEffect()
-                    )
-                })
+            label: {
+                Label("Done", systemImage: vm.isLoading ? "hourglass" : "arrowshape.right")
+                    .labelStyle(.iconOnly)
+                    .font(.system(size: 27 , weight: .bold))
+                    .foregroundStyle(Color.white)
+            }
+            .frame(width: 100, height: 60)
+            .background(Color("BlueAccent"))
+            .clipShape(.rect(cornerRadius: 15))
+            .padding(.bottom,5)
+            .opacity(vm.textOpacity)
+            .alertX(isPresented: $vm.showingAlert, content: {
+                AlertX(title: Text("Błąd"),message:Text ("Wprowadzony adres email jest nieprawidłowy lub nie należy do 'edu.p.lodz.pl'"),theme: AlertX.Theme.custom(windowColor: Color.white,
+                                                                                                                                                                    alertTextColor: Color("BlueAccent"),
+                                                                                                                                                                    enableShadow: true,
+                                                                                                                                                                    enableRoundedCorners: true,
+                                                                                                                                                                    enableTransparency: false,
+                                                                                                                                                                    cancelButtonColor: Color("BlueAccent2"),
+                                                                                                                                                                    cancelButtonTextColor: Color.white,
+                                                                                                                                                                    defaultButtonColor: Color("BlueAccent2"),
+                                                                                                                                                                    defaultButtonTextColor: Color("BlueAccent"),
+                                                                                                                                                                    roundedCornerRadius: 20),
+                       animation: .classicEffect()
+                )
+            })
                 
-                .alertX(isPresented: $vm.fetchErrorAlert, content: {
-                    AlertX(title: Text("Błąd"),message:Text ("Wprowadzony adres email\n nie istnieje w ramach 'edu.p.lodz.pl'"),theme: AlertX.Theme.custom(windowColor: Color.white,
-                                                                                                                                                           alertTextColor: Color("BlueAccent"),
-                                                                                                                                                           enableShadow: true,
-                                                                                                                                                           enableRoundedCorners: true,
-                                                                                                                                                           enableTransparency: false,
-                                                                                                                                                           cancelButtonColor: Color("BlueAccent2"),
-                                                                                                                                                           cancelButtonTextColor: Color.white,
-                                                                                                                                                           defaultButtonColor: Color("BlueAccent2"),
-                                                                                                                                                           defaultButtonTextColor: Color("BlueAccent"),
-                                                                                                                                                           roundedCornerRadius: 20),
-                           animation: .classicEffect()
-                    )
-                    
-                })
+            .alertX(isPresented: $vm.fetchErrorAlert, content: {
+                AlertX(title: Text("Błąd"),message:Text ("Wprowadzony adres email\n nie istnieje w ramach 'edu.p.lodz.pl'"),theme: AlertX.Theme.custom(windowColor: Color.white,
+                                                                                                                                                       alertTextColor: Color("BlueAccent"),
+                                                                                                                                                       enableShadow: true,
+                                                                                                                                                       enableRoundedCorners: true,
+                                                                                                                                                       enableTransparency: false,
+                                                                                                                                                       cancelButtonColor: Color("BlueAccent2"),
+                                                                                                                                                       cancelButtonTextColor: Color.white,
+                                                                                                                                                       defaultButtonColor: Color("BlueAccent2"),
+                                                                                                                                                       defaultButtonTextColor: Color("BlueAccent"),
+                                                                                                                                                       roundedCornerRadius: 20),
+                       animation: .classicEffect()
+                )
+                
+            })
+            .alertX(isPresented: $vm.userExists, content: {
+                AlertX(title: Text("Błąd"),message:Text ("Konto już istnieje"),theme: AlertX.Theme.custom(windowColor: Color.white,
+                                                                                                          alertTextColor: Color("BlueAccent"),
+                                                                                                          enableShadow: true,
+                                                                                                          enableRoundedCorners: true,
+                                                                                                          enableTransparency: false,
+                                                                                                          cancelButtonColor: Color("BlueAccent2"),
+                                                                                                          cancelButtonTextColor: Color.white,
+                                                                                                          defaultButtonColor: Color("BlueAccent2"),
+                                                                                                          defaultButtonTextColor: Color("BlueAccent"),
+                                                                                                          roundedCornerRadius: 20),
+                       animation: .classicEffect()
+                )
+                
+            })
             }
             .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
                         dismiss()
-                    }) 
+                    })
                     {
                         Image(systemName: "chevron.left")
                     }

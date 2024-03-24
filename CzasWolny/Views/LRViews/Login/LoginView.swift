@@ -4,7 +4,7 @@
 //
 //  Created by Слава Гринюк on 14.03.24.
 //
-
+//TODO: login view
 import SwiftUI
 
 struct LoginView: View {

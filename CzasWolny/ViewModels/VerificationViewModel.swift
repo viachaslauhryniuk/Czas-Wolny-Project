@@ -18,3 +18,19 @@ class EmailVerificationViewModel: ObservableObject {
     }
 }
 
+class UserViewModel: ObservableObject {
+    private var db = Firestore.firestore()
+    private var listenerRegistration: ListenerRegistration?
+   
+    @Published var users = User.self
+
+    func addUser(user: User) {
+        do {
+            _ = try db.collection("users").addDocument(from: user)
+        }
+        catch {
+            print("There was an error while trying to save a task \(error.localizedDescription).")
+        }
+    }
+}
+

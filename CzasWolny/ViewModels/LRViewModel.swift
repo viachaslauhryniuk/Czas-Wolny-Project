@@ -13,6 +13,8 @@ import FirebaseFirestore
 
 final class UsersViewModel: ObservableObject{
     @ObservedObject private var viewModel = EmailVerificationViewModel()
+    @ObservedObject private var viewModel2 = UserViewModel()
+    
     
     //MARK: WELCOME SCREEN VARIABLES
     
@@ -33,7 +35,8 @@ final class UsersViewModel: ObservableObject{
     @Published var showingAlert = false
     @Published var fetchErrorAlert = false
     @Published var verifiCode = false
-    
+    @Published var userExists = false
+    @Published var existingStatus: Int = 0
     
     //MARK: FUNCTIONS
     
@@ -43,6 +46,20 @@ final class UsersViewModel: ObservableObject{
         return emailTest.evaluate(with: email)
     }
     
+    
+    func checkIfUserExists(completion: @escaping (Int) -> Void) {
+        let db = Firestore.firestore()
+           db.collection("users").whereField("email", isEqualTo: email)
+               .getDocuments() { (querySnapshot, err) in
+                   if let err = err {
+                       print("Error getting documents: \(err)")
+                   } else if querySnapshot!.documents.count != 0 {
+                      completion(1)
+                   } else {
+                      completion(0)
+                   }
+               }
+       }
     
     //--------------------------------------------------------------
     
@@ -77,7 +94,7 @@ final class UsersViewModel: ObservableObject{
             task.resume()
     }
     
-    
+
     func checkVerificationCode(completion: @escaping (Int) -> Void) {
         let db = Firestore.firestore()
         let collectionRef = db.collection("userscodes")
@@ -111,6 +128,22 @@ final class UsersViewModel: ObservableObject{
     @Published  var confirmPassword = ""
     @Published var isBlue = false
     @Published  var showTips = false
+    @Published var showError = false
+    @Published var showPasswordError = false
+    
+    
+    //FUNCTIONS
+    
+    func validatePassword(_ password: String) {
+           let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")
+           if passwordTest.evaluate(with: password) {
+               let user = User(email: self.email, password: self.password)
+               viewModel2.addUser(user: user)
+               self.showPasswordError = false
+           } else {
+               self.showPasswordError = true
+           }
+       }
     
     
     //-------------------------------------------------------------

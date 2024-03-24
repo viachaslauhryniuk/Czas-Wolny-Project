@@ -1,5 +1,5 @@
 import SwiftUI
-
+import AlertX
 // This is your main view for creating a password.
 struct PasswordMakeView: View {
     // This is your ViewModel which you're using to manage your state.
@@ -25,7 +25,7 @@ struct PasswordMakeView: View {
                     if vm.showTips {
                         ScrollView {
                             VStack(spacing: 20) {
-                                Text("Długość hasła: Twoje hasło powinno mieć co najmniej 12 znaków. Im dłuższe hasło, tym trudniej je złamać.")
+                                Text("Długość hasła: Twoje hasło powinno mieć co najmniej 8 znaków. Im dłuższe hasło, tym trudniej je złamać.")
                                     .font(.custom("FallingSkyBd", size: 20))
                                 
 
@@ -73,29 +73,65 @@ struct PasswordMakeView: View {
                         .padding(.horizontal,20)
                     SecureField("Potwierdź swoje hasło", text: $vm.confirmPassword)
                         .padding(16)
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("BlueAccent") , lineWidth: 2))
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(vm.showError ? Color.red : Color("BlueAccent") , lineWidth: 2))
                         .padding(.horizontal,20)
-                        .padding(.bottom,25)
+                        .padding(.bottom,vm.showError ? 0 : 25)
+                        .onChange(of: vm.confirmPassword) { newValue in
+                            if vm.password == newValue {
+                                vm.showError = false
+                            }
+                            else {
+                                vm.showError = true
+                            }
+                        }
+                    if vm.showError {
+                        Text("Passwords do not match")
+                            .foregroundColor(.red)
+                            .padding(.bottom,vm.showError ? 25 : 0)
+                            .padding(.horizontal,20)
+                            .font(.custom("FallingSkyBd", size: 15))
+                    }
                 }
                 .padding(.horizontal, 20)
                 
                 // This is your button for submitting the form.
                 Button {
-                    // TODO: Handle password creation here
+                    vm.validatePassword(vm.password)
+                    if !vm.showPasswordError{
+                        //TODO: transfer to main view
+                    }
                 } label: {
                     Text("Załóż Konto")
                         .font(.custom("FallingSkyBd", size: 20))
                         .foregroundStyle(Color.white)
                 }
+                
                 .frame(width: 300)
                 .frame(height: 50)
                 .background(Color("BlueAccent"))
                 .clipShape(.rect(cornerRadius: 15))
                 .padding(.bottom,5)
                 .padding(.horizontal, 20)
+                .disabled(vm.showError)
+                .opacity(vm.showError ? 0.50 : 1)
                 
                
             }
+            .alertX(isPresented: $vm.showPasswordError, content: {
+                AlertX(title: Text("Błąd"),message:Text ("Password must be at least 8 characters long, and contain at least one uppercase letter, one lowercase letter, and one number"),theme: AlertX.Theme.custom(windowColor: Color.white,
+                                                                                                                                                                    alertTextColor: Color("BlueAccent"),
+                                                                                                                                                                    enableShadow: true,
+                                                                                                                                                                    enableRoundedCorners: true,
+                                                                                                                                                                    enableTransparency: false,
+                                                                                                                                                                    cancelButtonColor: Color("BlueAccent2"),
+                                                                                                                                                                    cancelButtonTextColor: Color.white,
+                                                                                                                                                                    defaultButtonColor: Color("BlueAccent2"),
+                                                                                                                                                                    defaultButtonTextColor: Color("BlueAccent"),
+                                                                                                                                                                    roundedCornerRadius: 20),
+                       animation: .classicEffect()
+                )
+            })
+
             .padding(.top, 20)
             .opacity(vm.opacity)
             .onAppear {
