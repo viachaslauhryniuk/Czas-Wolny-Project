@@ -24,7 +24,7 @@ struct EnterView: View {
                         .font(Font.custom("FallingSkyBd", size: 18 ))
                         
                     Text("Zaloż konto już dziś!")
-                        .font(.custom("FallingSkyBlk", size: 30))
+                        .font(.custom("FallingSkyBd", size: 30))
                         .foregroundStyle(Color("BlueAccent"))
                 }
                 .padding(.bottom, 25)

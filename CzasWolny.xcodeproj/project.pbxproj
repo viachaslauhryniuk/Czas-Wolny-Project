@@ -150,10 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				564950252BA2E7A900C61E43 /* EnterView.swift */,
-				5649503F2BA3AA3C00C61E43 /* LoginView.swift */,
-				564950452BA3ACE100C61E43 /* RegisterView.swift */,
-				564950522BA6495C00C61E43 /* EmailConfirmationView.swift */,
-				565B82182BAB65470038F935 /* PasswordMakeView.swift */,
+				5691D1092BB08F60006AD479 /* Reg */,
+				5691D1082BB08F53006AD479 /* Login */,
 			);
 			path = LRViews;
 			sourceTree = "<group>";
@@ -163,6 +161,24 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5691D1082BB08F53006AD479 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5649503F2BA3AA3C00C61E43 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		5691D1092BB08F60006AD479 /* Reg */ = {
+			isa = PBXGroup;
+			children = (
+				565B82182BAB65470038F935 /* PasswordMakeView.swift */,
+				564950522BA6495C00C61E43 /* EmailConfirmationView.swift */,
+				564950452BA3ACE100C61E43 /* RegisterView.swift */,
+			);
+			path = Reg;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
