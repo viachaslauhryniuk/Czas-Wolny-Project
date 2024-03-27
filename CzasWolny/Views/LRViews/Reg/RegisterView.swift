@@ -59,16 +59,19 @@ struct RegisterView: View {
                 Button {
                     vm.isLoading = true
                     if !vm.isValidEmail(vm.email){
+                            vm.errorShow = true
                             vm.isLoading = false
-                            vm.showingAlert = true
+                        vm.errorMessage = "Wprowadzony adres email jest nieprawidłowy lub nie należy do 'edu.p.lodz.pl'"
                     }
                     else{
                         
                         vm.checkIfUserExists(completion: { status in
                             vm.existingStatus = status
                             if vm.existingStatus == 1{
+                                vm.errorShow = true
                                 vm.isLoading = false
-                                vm.userExists = true
+                                vm.errorMessage = "Konto już istnieje"
+                              //  vm.userExists = true
                                 vm.email = ""
                             }
                             else{
@@ -79,7 +82,8 @@ struct RegisterView: View {
                                     .receive(on: DispatchQueue.main)
                                     .sink(receiveCompletion: { _ in }, receiveValue: { response in
                                         if response.data.status != "valid" {
-                                            vm.fetchErrorAlert = true
+                                            vm.errorShow = true
+                                            vm.errorMessage = "Wprowadzony adres email\n nie istnieje w ramach 'edu.p.lodz.pl'"
                                             vm.isLoading = false
                                         }
                                         else {
@@ -102,8 +106,8 @@ struct RegisterView: View {
             .clipShape(.rect(cornerRadius: 15))
             .padding(.bottom,5)
             .opacity(vm.textOpacity)
-            .alertX(isPresented: $vm.showingAlert, content: {
-                AlertX(title: Text("Błąd"),message:Text ("Wprowadzony adres email jest nieprawidłowy lub nie należy do 'edu.p.lodz.pl'"),theme: AlertX.Theme.custom(windowColor: Color.white,
+            .alertX(isPresented: $vm.errorShow, content: {
+                AlertX(title: Text("Błąd"),message:Text (vm.errorMessage),theme: AlertX.Theme.custom(windowColor: Color.white,
                                                                                                                                                                     alertTextColor: Color("BlueAccent"),
                                                                                                                                                                     enableShadow: true,
                                                                                                                                                                     enableRoundedCorners: true,
@@ -116,42 +120,13 @@ struct RegisterView: View {
                        animation: .classicEffect()
                 )
             })
-                
-            .alertX(isPresented: $vm.fetchErrorAlert, content: {
-                AlertX(title: Text("Błąd"),message:Text ("Wprowadzony adres email\n nie istnieje w ramach 'edu.p.lodz.pl'"),theme: AlertX.Theme.custom(windowColor: Color.white,
-                                                                                                                                                       alertTextColor: Color("BlueAccent"),
-                                                                                                                                                       enableShadow: true,
-                                                                                                                                                       enableRoundedCorners: true,
-                                                                                                                                                       enableTransparency: false,
-                                                                                                                                                       cancelButtonColor: Color("BlueAccent2"),
-                                                                                                                                                       cancelButtonTextColor: Color.white,
-                                                                                                                                                       defaultButtonColor: Color("BlueAccent2"),
-                                                                                                                                                       defaultButtonTextColor: Color("BlueAccent"),
-                                                                                                                                                       roundedCornerRadius: 20),
-                       animation: .classicEffect()
-                )
-                
-            })
-            .alertX(isPresented: $vm.userExists, content: {
-                AlertX(title: Text("Błąd"),message:Text ("Konto już istnieje"),theme: AlertX.Theme.custom(windowColor: Color.white,
-                                                                                                          alertTextColor: Color("BlueAccent"),
-                                                                                                          enableShadow: true,
-                                                                                                          enableRoundedCorners: true,
-                                                                                                          enableTransparency: false,
-                                                                                                          cancelButtonColor: Color("BlueAccent2"),
-                                                                                                          cancelButtonTextColor: Color.white,
-                                                                                                          defaultButtonColor: Color("BlueAccent2"),
-                                                                                                          defaultButtonTextColor: Color("BlueAccent"),
-                                                                                                          roundedCornerRadius: 20),
-                       animation: .classicEffect()
-                )
-                
-            })
+
             }
             .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
+                        vm.email = ""
                         dismiss()
                     })
                     {

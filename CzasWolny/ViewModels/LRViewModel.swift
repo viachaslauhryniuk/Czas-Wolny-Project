@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import FirebaseFirestore
-
+import FirebaseAuth
 
 
 final class UsersViewModel: ObservableObject{
@@ -24,18 +24,33 @@ final class UsersViewModel: ObservableObject{
     //-------------------------------------------
     
     
-    //MARK: REGISTRATION VIEW VARIABLES
+    //MARK: LOGIN VIEW VARIABLES
     
+    
+    //FUNCTIONS
+    func signInUser(completion: @escaping (Int) -> Void) {
+        if !email.contains("@edu.p.lodz.pl"){
+            email = "\(email)@edu.p.lodz.pl"
+        }
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            if let error = error {
+                completion(1)
+            } else {
+                completion(0)
+            }
+        }
+    }
+    
+    //MARK: REGISTRATION VIEW VARIABLES
+    @Published var errorMessage = ""
     @Published var logoScale: CGFloat = 1.3
     @Published var logoOffset: CGFloat = 0.0
     @Published var textOpacity: Double = 0.0
     @Published var email = ""
     @Published var isLoading = false
     @Published var isEditing = false
-    @Published var showingAlert = false
-    @Published var fetchErrorAlert = false
     @Published var verifiCode = false
-    @Published var userExists = false
+    @Published var errorShow = false
     @Published var existingStatus: Int = 0
     
     //MARK: FUNCTIONS
@@ -49,7 +64,7 @@ final class UsersViewModel: ObservableObject{
     
     func checkIfUserExists(completion: @escaping (Int) -> Void) {
         let db = Firestore.firestore()
-           db.collection("users").whereField("email", isEqualTo: email)
+           db.collection("registeredEmails").whereField("email", isEqualTo: email)
                .getDocuments() { (querySnapshot, err) in
                    if let err = err {
                        print("Error getting documents: \(err)")
@@ -137,8 +152,15 @@ final class UsersViewModel: ObservableObject{
     func validatePassword(_ password: String) {
            let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")
            if passwordTest.evaluate(with: password) {
-               let user = User(email: self.email, password: self.password)
+               let user = User(email: self.email)
                viewModel2.addUser(user: user)
+               Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
+                      if let error = error {
+                          print("Error creating user: \(error.localizedDescription)")
+                      } else {
+                          print("User created successfully!")
+                      }
+                  }
                self.showPasswordError = false
            } else {
                self.showPasswordError = true
@@ -151,7 +173,7 @@ final class UsersViewModel: ObservableObject{
     
     
     //MARK: OTHER FUNCTIONS:
-    
+    @Published var transfer = false
     
     func createRequest() -> URLRequest? {
         guard let url = URL(string: "https://api.elasticemail.com/v2/email/send") else {

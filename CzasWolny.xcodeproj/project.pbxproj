@@ -30,6 +30,8 @@
 		5649506F2BA7103D00C61E43 /* VerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649506E2BA7103D00C61E43 /* VerificationViewModel.swift */; };
 		565B82192BAB65470038F935 /* PasswordMakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565B82182BAB65470038F935 /* PasswordMakeView.swift */; };
 		565B821C2BAE1D7C0038F935 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 565B821B2BAE1D7C0038F935 /* Pow */; };
+		5691D10B2BB36522006AD479 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5691D10A2BB36522006AD479 /* FirebaseAuth */; };
+		5691D10D2BB4C9E9006AD479 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5691D10C2BB4C9E9006AD479 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,7 @@
 		564950622BA7003700C61E43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5649506E2BA7103D00C61E43 /* VerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewModel.swift; sourceTree = "<group>"; };
 		565B82182BAB65470038F935 /* PasswordMakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordMakeView.swift; sourceTree = "<group>"; };
+		5691D10C2BB4C9E9006AD479 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				565B821C2BAE1D7C0038F935 /* Pow in Frameworks */,
+				5691D10B2BB36522006AD479 /* FirebaseAuth in Frameworks */,
 				5649505D2BA6FEAD00C61E43 /* FirebaseAnalyticsSwift in Frameworks */,
 				5649505F2BA6FEAD00C61E43 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				564950592BA6FEAD00C61E43 /* FirebaseAnalytics in Frameworks */,
@@ -141,6 +145,7 @@
 		564950492BA46D6800C61E43 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5691D10C2BB4C9E9006AD479 /* MainView.swift */,
 				5649504A2BA46DFC00C61E43 /* LRViews */,
 			);
 			path = Views;
@@ -207,6 +212,7 @@
 				564950682BA70A4700C61E43 /* FirebaseFirestore */,
 				5649506A2BA70A4700C61E43 /* FirebaseFirestoreSwift */,
 				565B821B2BAE1D7C0038F935 /* Pow */,
+				5691D10A2BB36522006AD479 /* FirebaseAuth */,
 			);
 			productName = CzasWolny;
 			productReference = 564950202BA2E7A900C61E43 /* CzasWolny.app */;
@@ -273,6 +279,7 @@
 				565B82192BAB65470038F935 /* PasswordMakeView.swift in Sources */,
 				564950442BA3ABBC00C61E43 /* LRModel.swift in Sources */,
 				564950402BA3AA3C00C61E43 /* LoginView.swift in Sources */,
+				5691D10D2BB4C9E9006AD479 /* MainView.swift in Sources */,
 				5649506F2BA7103D00C61E43 /* VerificationViewModel.swift in Sources */,
 				564950532BA6495D00C61E43 /* EmailConfirmationView.swift in Sources */,
 				564950462BA3ACE100C61E43 /* RegisterView.swift in Sources */,
@@ -559,6 +566,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 565B821A2BAE1D7C0038F935 /* XCRemoteSwiftPackageReference "Pow" */;
 			productName = Pow;
+		};
+		5691D10A2BB36522006AD479 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 564950572BA6FEAD00C61E43 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -98,7 +98,7 @@ struct PasswordMakeView: View {
                 Button {
                     vm.validatePassword(vm.password)
                     if !vm.showPasswordError{
-                        //TODO: transfer to main view
+                        vm.transfer = true
                     }
                 } label: {
                     Text("Załóż Konto")
@@ -139,6 +139,9 @@ struct PasswordMakeView: View {
                 withAnimation(.easeIn(duration: 1.5)) {
                     vm.opacity = 1
                 }
+            }
+            .fullScreenCover(isPresented: $vm.transfer) {
+                MainView()
             }
         }
     

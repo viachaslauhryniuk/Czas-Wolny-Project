@@ -26,7 +26,7 @@ class UserViewModel: ObservableObject {
 
     func addUser(user: User) {
         do {
-            _ = try db.collection("users").addDocument(from: user)
+            _ = try db.collection("registeredEmails").addDocument(from: user)
         }
         catch {
             print("There was an error while trying to save a task \(error.localizedDescription).")
