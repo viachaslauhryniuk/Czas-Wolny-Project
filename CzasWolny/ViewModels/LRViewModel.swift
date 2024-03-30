@@ -25,7 +25,8 @@ final class UsersViewModel: ObservableObject{
     
     
     //MARK: LOGIN VIEW VARIABLES
-    
+    @Published var appear = false
+    @Published var appearBackground = false
     
     //FUNCTIONS
     func signInUser(completion: @escaping (Int) -> Void) {

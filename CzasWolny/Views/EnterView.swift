@@ -9,8 +9,10 @@ import SwiftUI
 
 struct EnterView: View {
     @ObservedObject var vm = UsersViewModel()
+
     var body: some View {
-        NavigationStack{
+        
+    NavigationStack{
             VStack {
                 Image("Logo1")
                     .resizable()

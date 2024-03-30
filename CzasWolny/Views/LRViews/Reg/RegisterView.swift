@@ -59,42 +59,45 @@ struct RegisterView: View {
                 Button {
                     vm.isLoading = true
                     if !vm.isValidEmail(vm.email){
-                            vm.errorShow = true
-                            vm.isLoading = false
                         vm.errorMessage = "Wprowadzony adres email jest nieprawidłowy lub nie należy do 'edu.p.lodz.pl'"
+                        vm.errorShow = true
+                        vm.isLoading = false
                     }
                     else{
-                        
                         vm.checkIfUserExists(completion: { status in
                             vm.existingStatus = status
                             if vm.existingStatus == 1{
+                                vm.errorMessage = "Konto już istnieje"
                                 vm.errorShow = true
                                 vm.isLoading = false
-                                vm.errorMessage = "Konto już istnieje"
-                              //  vm.userExists = true
                                 vm.email = ""
                             }
                             else{
-                                let url = URL(string: "https://api.hunter.io/v2/email-verifier?email=\(vm.email)&api_key=5fcbeee2f1413e6ba1f0d979c71be8a35a81e4db")!
-                                cancellable = URLSession.shared.dataTaskPublisher(for: url)
-                                    .map { $0.data }
-                                    .decode(type: ApiResponse.self, decoder: JSONDecoder())
-                                    .receive(on: DispatchQueue.main)
-                                    .sink(receiveCompletion: { _ in }, receiveValue: { response in
-                                        if response.data.status != "valid" {
-                                            vm.errorShow = true
-                                            vm.errorMessage = "Wprowadzony adres email\n nie istnieje w ramach 'edu.p.lodz.pl'"
-                                            vm.isLoading = false
-                                        }
-                                        else {
-                                            vm.verifiCode = true
-                                            vm.isLoading = false
-                                        }
-                                    })
+                                // Only start the URLSession data task if no error has been shown
+                                if !vm.errorShow {
+                                    let url = URL(string: "https://api.hunter.io/v2/email-verifier?email=\(vm.email)&api_key=5fcbeee2f1413e6ba1f0d979c71be8a35a81e4db")!
+                                    cancellable = URLSession.shared.dataTaskPublisher(for: url)
+                                        .map { $0.data }
+                                        .decode(type: ApiResponse.self, decoder: JSONDecoder())
+                                        .receive(on: DispatchQueue.main)
+                                        .sink(receiveCompletion: { _ in }, receiveValue: { response in
+                                            if response.data.status != "valid" {
+                                                vm.errorMessage = "Wprowadzony adres email\n nie istnieje w ramach 'edu.p.lodz.pl'"
+                                                vm.errorShow = true
+                                                vm.isLoading = false
+                                            }
+                                            else {
+                                                vm.verifiCode = true
+                                                vm.isLoading = false
+                                            }
+                                        })
+                                }
                             }
                         })
                     }
-                }
+
+                    }
+                
             label: {
                 Label("Done", systemImage: vm.isLoading ? "hourglass" : "arrowshape.right")
                     .labelStyle(.iconOnly)
@@ -127,6 +130,9 @@ struct RegisterView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
                         vm.email = ""
+                        vm.logoScale = 1.3
+                        vm.logoOffset = 0.0
+                        vm.textOpacity = 0.0
                         dismiss()
                     })
                     {

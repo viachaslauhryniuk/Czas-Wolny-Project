@@ -1,0 +1,551 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		133D41D216B491BC9DE0E5928C921D70 /* Pods-CzasWolny-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F7B0DA1851B36BAFE09EEBFD9A6893 /* Pods-CzasWolny-dummy.m */; };
+		6F118DE635C6F6F65EB9A55B4EDD6F47 /* SwiftUIWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3134DCE6D55176F5AC5782622B6656 /* SwiftUIWheelPicker.swift */; };
+		99E5D80E111EE35FB0711502D26DB512 /* SwiftUIWheelPicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E13D2D9890E44FE877D56863363B2DE5 /* SwiftUIWheelPicker-dummy.m */; };
+		AFE7B7E74A75BF6890FEC78A167A48B6 /* Pods-CzasWolny-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A4240448946508A9EF0DA5C037D0967 /* Pods-CzasWolny-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C2D00CA8FB33A2DBEE7B6256ED487B34 /* SwiftUIWheelPicker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F89465077A33D6133DBD9EF9BA05E399 /* SwiftUIWheelPicker-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BE8FF007CF10AE257AEE8E01EAC2104A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14534BC0A1B6D153607A464F3355FF29;
+			remoteInfo = SwiftUIWheelPicker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1E349E178259CC2080F3BCC78DD8B7B5 /* Pods-CzasWolny.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CzasWolny.modulemap"; sourceTree = "<group>"; };
+		26CE6D052EE62B7BF0558DA9E572B081 /* SwiftUIWheelPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftUIWheelPicker.release.xcconfig; sourceTree = "<group>"; };
+		2D023CDF4E01E96A96DBC8FEA2F633BD /* Pods-CzasWolny-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CzasWolny-acknowledgements.plist"; sourceTree = "<group>"; };
+		385AADA108406250BC717E54F359BC7E /* SwiftUIWheelPicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftUIWheelPicker.debug.xcconfig; sourceTree = "<group>"; };
+		3916CED88C518AD2CC6B122E44FF723A /* SwiftUIWheelPicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftUIWheelPicker-prefix.pch"; sourceTree = "<group>"; };
+		5A4240448946508A9EF0DA5C037D0967 /* Pods-CzasWolny-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CzasWolny-umbrella.h"; sourceTree = "<group>"; };
+		5D0A497B9341E0D89E9584E4B85EE4C6 /* Pods-CzasWolny-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CzasWolny-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6D31FA31D25A36CE1E334149564A7593 /* Pods-CzasWolny.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CzasWolny.debug.xcconfig"; sourceTree = "<group>"; };
+		6FB8601272592F730BE67750D56E0C6F /* Pods-CzasWolny.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CzasWolny.release.xcconfig"; sourceTree = "<group>"; };
+		70F7B0DA1851B36BAFE09EEBFD9A6893 /* Pods-CzasWolny-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CzasWolny-dummy.m"; sourceTree = "<group>"; };
+		7ADED5840019A146CE90852E461A90B6 /* libSwiftUIWheelPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSwiftUIWheelPicker.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BF3134DCE6D55176F5AC5782622B6656 /* SwiftUIWheelPicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftUIWheelPicker.swift; path = SwiftUIWheelPicker/Classes/SwiftUIWheelPicker.swift; sourceTree = "<group>"; };
+		CD66ED0E47A8550C161BBB76D47E295A /* Pods-CzasWolny */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-CzasWolny"; path = "libPods-CzasWolny.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBE036291F04F335FC7F58F15F655DD2 /* SwiftUIWheelPicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftUIWheelPicker.modulemap; sourceTree = "<group>"; };
+		E13D2D9890E44FE877D56863363B2DE5 /* SwiftUIWheelPicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftUIWheelPicker-dummy.m"; sourceTree = "<group>"; };
+		F89465077A33D6133DBD9EF9BA05E399 /* SwiftUIWheelPicker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftUIWheelPicker-umbrella.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		23278BB4AC0CFAB11A6EAE9ECBB35CFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		820755376A08E386747105047697D500 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		49C6344D51A7CB26EED36AA3628AD651 /* Pods-CzasWolny */ = {
+			isa = PBXGroup;
+			children = (
+				1E349E178259CC2080F3BCC78DD8B7B5 /* Pods-CzasWolny.modulemap */,
+				5D0A497B9341E0D89E9584E4B85EE4C6 /* Pods-CzasWolny-acknowledgements.markdown */,
+				2D023CDF4E01E96A96DBC8FEA2F633BD /* Pods-CzasWolny-acknowledgements.plist */,
+				70F7B0DA1851B36BAFE09EEBFD9A6893 /* Pods-CzasWolny-dummy.m */,
+				5A4240448946508A9EF0DA5C037D0967 /* Pods-CzasWolny-umbrella.h */,
+				6D31FA31D25A36CE1E334149564A7593 /* Pods-CzasWolny.debug.xcconfig */,
+				6FB8601272592F730BE67750D56E0C6F /* Pods-CzasWolny.release.xcconfig */,
+			);
+			name = "Pods-CzasWolny";
+			path = "Target Support Files/Pods-CzasWolny";
+			sourceTree = "<group>";
+		};
+		BC41DF5CA16852568105387C85406D76 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E2485DFCAB77B941E4D4448B13C22EAE /* SwiftUIWheelPicker */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BECA09A5E31051EEA413D151F04D5593 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				DBE036291F04F335FC7F58F15F655DD2 /* SwiftUIWheelPicker.modulemap */,
+				E13D2D9890E44FE877D56863363B2DE5 /* SwiftUIWheelPicker-dummy.m */,
+				3916CED88C518AD2CC6B122E44FF723A /* SwiftUIWheelPicker-prefix.pch */,
+				F89465077A33D6133DBD9EF9BA05E399 /* SwiftUIWheelPicker-umbrella.h */,
+				385AADA108406250BC717E54F359BC7E /* SwiftUIWheelPicker.debug.xcconfig */,
+				26CE6D052EE62B7BF0558DA9E572B081 /* SwiftUIWheelPicker.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SwiftUIWheelPicker";
+			sourceTree = "<group>";
+		};
+		BEF42675B3341E7BC45AC92F99C6D32A /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				49C6344D51A7CB26EED36AA3628AD651 /* Pods-CzasWolny */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		CB8F680EBA8CAD998805564973E0C4AD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD66ED0E47A8550C161BBB76D47E295A /* Pods-CzasWolny */,
+				7ADED5840019A146CE90852E461A90B6 /* libSwiftUIWheelPicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				BC41DF5CA16852568105387C85406D76 /* Pods */,
+				CB8F680EBA8CAD998805564973E0C4AD /* Products */,
+				BEF42675B3341E7BC45AC92F99C6D32A /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E2485DFCAB77B941E4D4448B13C22EAE /* SwiftUIWheelPicker */ = {
+			isa = PBXGroup;
+			children = (
+				BF3134DCE6D55176F5AC5782622B6656 /* SwiftUIWheelPicker.swift */,
+				BECA09A5E31051EEA413D151F04D5593 /* Support Files */,
+			);
+			path = SwiftUIWheelPicker;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		99ADFF07DCDEF1EC4D402AE5314A331F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFE7B7E74A75BF6890FEC78A167A48B6 /* Pods-CzasWolny-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7CF91D684E654E1AC1619E7F4A541B2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2D00CA8FB33A2DBEE7B6256ED487B34 /* SwiftUIWheelPicker-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		14534BC0A1B6D153607A464F3355FF29 /* SwiftUIWheelPicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 808B62F56500253870D9161CBCE93633 /* Build configuration list for PBXNativeTarget "SwiftUIWheelPicker" */;
+			buildPhases = (
+				E7CF91D684E654E1AC1619E7F4A541B2 /* Headers */,
+				FCB130E48298471D5AEB37CF45551B1C /* Sources */,
+				23278BB4AC0CFAB11A6EAE9ECBB35CFF /* Frameworks */,
+				C1697AA368ABAFF5F2BD878DD1F91056 /* Copy generated compatibility header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftUIWheelPicker;
+			productName = SwiftUIWheelPicker;
+			productReference = 7ADED5840019A146CE90852E461A90B6 /* libSwiftUIWheelPicker.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		A9F6A1FA3F950D4FD31DDB749C7A646B /* Pods-CzasWolny */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF52D6EC8A1F405472FA8AE35B3F9DF6 /* Build configuration list for PBXNativeTarget "Pods-CzasWolny" */;
+			buildPhases = (
+				99ADFF07DCDEF1EC4D402AE5314A331F /* Headers */,
+				FB2D07C9CD5C692ED8B8C2DBAD9C1D71 /* Sources */,
+				820755376A08E386747105047697D500 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1AE6E5136F10500626EB41B10A49C12 /* PBXTargetDependency */,
+			);
+			name = "Pods-CzasWolny";
+			productName = "Pods-CzasWolny";
+			productReference = CD66ED0E47A8550C161BBB76D47E295A /* Pods-CzasWolny */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					14534BC0A1B6D153607A464F3355FF29 = {
+						LastSwiftMigration = 1520;
+					};
+				};
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = CB8F680EBA8CAD998805564973E0C4AD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A9F6A1FA3F950D4FD31DDB749C7A646B /* Pods-CzasWolny */,
+				14534BC0A1B6D153607A464F3355FF29 /* SwiftUIWheelPicker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C1697AA368ABAFF5F2BD878DD1F91056 /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/SwiftUIWheelPicker/SwiftUIWheelPicker.modulemap",
+				"${PODS_ROOT}/Headers/Public/SwiftUIWheelPicker/SwiftUIWheelPicker-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/SwiftUIWheelPicker-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/SwiftUIWheelPicker/SwiftUIWheelPicker.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/SwiftUIWheelPicker/SwiftUIWheelPicker-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FB2D07C9CD5C692ED8B8C2DBAD9C1D71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				133D41D216B491BC9DE0E5928C921D70 /* Pods-CzasWolny-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCB130E48298471D5AEB37CF45551B1C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F118DE635C6F6F65EB9A55B4EDD6F47 /* SwiftUIWheelPicker.swift in Sources */,
+				99E5D80E111EE35FB0711502D26DB512 /* SwiftUIWheelPicker-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B1AE6E5136F10500626EB41B10A49C12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftUIWheelPicker;
+			target = 14534BC0A1B6D153607A464F3355FF29 /* SwiftUIWheelPicker */;
+			targetProxy = BE8FF007CF10AE257AEE8E01EAC2104A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		11213A68EF6837FE9D2F5138DE527AA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D31FA31D25A36CE1E334149564A7593 /* Pods-CzasWolny.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CzasWolny/Pods-CzasWolny.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7C3FBC45C4966EFE20583918767EFBE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		D435EDC2B208CAC78FD0ABD38E74AF38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26CE6D052EE62B7BF0558DA9E572B081 /* SwiftUIWheelPicker.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftUIWheelPicker/SwiftUIWheelPicker-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MODULEMAP_FILE = Headers/Public/SwiftUIWheelPicker/SwiftUIWheelPicker.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SwiftUIWheelPicker;
+				PRODUCT_NAME = SwiftUIWheelPicker;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DFD77BE434AC5C7DA63502911E85065E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FB8601272592F730BE67750D56E0C6F /* Pods-CzasWolny.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CzasWolny/Pods-CzasWolny.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F3821E306A2AA88129C02F43500DC7C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 385AADA108406250BC717E54F359BC7E /* SwiftUIWheelPicker.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftUIWheelPicker/SwiftUIWheelPicker-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MODULEMAP_FILE = Headers/Public/SwiftUIWheelPicker/SwiftUIWheelPicker.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SwiftUIWheelPicker;
+				PRODUCT_NAME = SwiftUIWheelPicker;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FF0A36149038A192FFD678E1D4A40D3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C3FBC45C4966EFE20583918767EFBE2 /* Debug */,
+				FF0A36149038A192FFD678E1D4A40D3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		808B62F56500253870D9161CBCE93633 /* Build configuration list for PBXNativeTarget "SwiftUIWheelPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3821E306A2AA88129C02F43500DC7C4 /* Debug */,
+				D435EDC2B208CAC78FD0ABD38E74AF38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF52D6EC8A1F405472FA8AE35B3F9DF6 /* Build configuration list for PBXNativeTarget "Pods-CzasWolny" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11213A68EF6837FE9D2F5138DE527AA6 /* Debug */,
+				DFD77BE434AC5C7DA63502911E85065E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

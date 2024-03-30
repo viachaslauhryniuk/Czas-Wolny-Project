@@ -1,0 +1,6 @@
+module Pods_CzasWolny {
+  umbrella header "Pods-CzasWolny-umbrella.h"
+
+  export *
+  module * { export * }
+}
