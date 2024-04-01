@@ -56,6 +56,7 @@ struct MainView: View {
             }
             else{
                 ScheduleView()
+                    .environmentObject(vm)
             }
         }
     }

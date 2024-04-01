@@ -12,7 +12,7 @@ struct CzasWolnyApp: App {
         var body: some Scene {
             WindowGroup {
                 if Auth.auth().currentUser != nil {
-                    EnterView()
+                    MainView()
                 } else {
                     EnterView() 
                 }

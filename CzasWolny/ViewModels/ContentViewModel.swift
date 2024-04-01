@@ -1,6 +1,7 @@
 
 import SwiftUI
 import Foundation
+import Combine
 final class ContentViewModel: ObservableObject{
  // MARK: Joint Variables
     @AppStorage("selectedGroup") var selectedGroup: String = ""
@@ -15,3 +16,9 @@ final class ContentViewModel: ObservableObject{
     @Published var specialities = ["EAiBD", "TI", "IO"]
   
 }
+
+
+
+
+
+

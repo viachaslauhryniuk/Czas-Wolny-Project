@@ -40,6 +40,8 @@
 		5661E3BA2BB838CF00AF450B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5661E3B92BB838CF00AF450B /* ContentViewModel.swift */; };
 		5691D10B2BB36522006AD479 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5691D10A2BB36522006AD479 /* FirebaseAuth */; };
 		5691D10D2BB4C9E9006AD479 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5691D10C2BB4C9E9006AD479 /* MainView.swift */; };
+		56FB74432BBAEE7D000DC4A2 /* schedules.json in Resources */ = {isa = PBXBuildFile; fileRef = 56FB74422BBAEE7D000DC4A2 /* schedules.json */; };
+		56FB74452BBAF108000DC4A2 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB74442BBAF108000DC4A2 /* ImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		5661E3B32BB6D68700AF450B /* GroupChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChoiceView.swift; sourceTree = "<group>"; };
 		5661E3B92BB838CF00AF450B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		5691D10C2BB4C9E9006AD479 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		56FB74422BBAEE7D000DC4A2 /* schedules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = schedules.json; path = CzasWolny/schedules.json; sourceTree = SOURCE_ROOT; };
+		56FB74442BBAF108000DC4A2 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		F6CF62D128FBDBFFB46DC92D /* libPods-CzasWolny.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CzasWolny.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9C6BD038B0DEBE38FC27421 /* Pods-CzasWolny.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CzasWolny.debug.xcconfig"; path = "Target Support Files/Pods-CzasWolny/Pods-CzasWolny.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				5661E3B92BB838CF00AF450B /* ContentViewModel.swift */,
+				56FB74422BBAEE7D000DC4A2 /* schedules.json */,
 				564950412BA3AB9F00C61E43 /* LRViewModel.swift */,
 				5649506E2BA7103D00C61E43 /* VerificationViewModel.swift */,
 			);
@@ -200,6 +205,7 @@
 				5691D10C2BB4C9E9006AD479 /* MainView.swift */,
 				5661E3B32BB6D68700AF450B /* GroupChoiceView.swift */,
 				5661E3AD2BB5926C00AF450B /* ScheduleView.swift */,
+				56FB74442BBAF108000DC4A2 /* ImageView.swift */,
 			);
 			path = MainMenuViews;
 			sourceTree = "<group>";
@@ -321,6 +327,7 @@
 				564950632BA7003700C61E43 /* GoogleService-Info.plist in Resources */,
 				5649503C2BA39F8B00C61E43 /* FallingSkyBlk.otf in Resources */,
 				564950282BA2E7AD00C61E43 /* Assets.xcassets in Resources */,
+				56FB74432BBAEE7D000DC4A2 /* schedules.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +366,7 @@
 				565B82192BAB65470038F935 /* PasswordMakeView.swift in Sources */,
 				5661E3B02BB5960000AF450B /* PdfModel.swift in Sources */,
 				564950442BA3ABBC00C61E43 /* LRModel.swift in Sources */,
+				56FB74452BBAF108000DC4A2 /* ImageView.swift in Sources */,
 				564950402BA3AA3C00C61E43 /* LoginView.swift in Sources */,
 				5691D10D2BB4C9E9006AD479 /* MainView.swift in Sources */,
 				5649506F2BA7103D00C61E43 /* VerificationViewModel.swift in Sources */,

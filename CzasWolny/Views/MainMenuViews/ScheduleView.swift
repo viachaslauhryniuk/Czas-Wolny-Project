@@ -3,12 +3,19 @@
 import SwiftUI
 
 struct ScheduleView: View {
+    let scheduleLoader = ScheduleLoader()
+    @EnvironmentObject var vm: ContentViewModel
     var body: some View {
         
-               PDFKitRepresentedView(url: Bundle.main.url(forResource: "kZ7F8D-24mar25plany", withExtension: "pdf")!)
-            .ignoresSafeArea(.all, edges: .bottom)
+        if let url = scheduleLoader.getUrl(forGroup: vm.selectedGroup) {
+                    ImageView(url: url)
+                } else {
+                    Text("No schedule available for this group.")
+                }
+            }
+      
     }
-}
+
 
 #Preview {
     ScheduleView()

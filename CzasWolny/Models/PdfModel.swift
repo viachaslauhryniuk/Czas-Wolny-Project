@@ -23,3 +23,39 @@ struct PDFKitRepresentedView: UIViewRepresentable {
         // Update the view if needed
     }
 }
+class ImageLoader: ObservableObject {
+    @Published var imageData: Data = Data()
+
+    func fetchImage(url: String) {
+        guard let imageUrl = URL(string: url) else {
+            return
+        }
+
+        URLSession.shared.dataTask(with: imageUrl) { (data, response, error) in
+            guard let data = data else {
+                return
+            }
+            DispatchQueue.main.async {
+                self.imageData = data
+            }
+        }.resume()
+    }
+}
+
+
+
+class ScheduleLoader: ObservableObject {
+    var schedules: [String: String] = [:]
+
+    init() {
+        if let url = Bundle.main.url(forResource: "schedules", withExtension: "json"),
+           let data = try? Data(contentsOf: url),
+           let parsedSchedules = try? JSONSerialization.jsonObject(with: data) as? [String: String] {
+            self.schedules = parsedSchedules
+        }
+    }
+
+    func getUrl(forGroup group: String) -> String? {
+        return schedules[group]
+    }
+}
