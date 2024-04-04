@@ -35,13 +35,21 @@
 		5661E3A82BB58C2C00AF450B /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5661E3A72BB58C2C00AF450B /* TabItemView.swift */; };
 		5661E3AE2BB5926C00AF450B /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5661E3AD2BB5926C00AF450B /* ScheduleView.swift */; };
 		5661E3B02BB5960000AF450B /* PdfModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5661E3AF2BB5960000AF450B /* PdfModel.swift */; };
-		5661E3B22BB596A200AF450B /* kZ7F8D-24mar25plany.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5661E3B12BB596A200AF450B /* kZ7F8D-24mar25plany.pdf */; };
 		5661E3B42BB6D68800AF450B /* GroupChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5661E3B32BB6D68700AF450B /* GroupChoiceView.swift */; };
 		5661E3BA2BB838CF00AF450B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5661E3B92BB838CF00AF450B /* ContentViewModel.swift */; };
 		5691D10B2BB36522006AD479 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5691D10A2BB36522006AD479 /* FirebaseAuth */; };
 		5691D10D2BB4C9E9006AD479 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5691D10C2BB4C9E9006AD479 /* MainView.swift */; };
 		56FB74432BBAEE7D000DC4A2 /* schedules.json in Resources */ = {isa = PBXBuildFile; fileRef = 56FB74422BBAEE7D000DC4A2 /* schedules.json */; };
 		56FB74452BBAF108000DC4A2 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB74442BBAF108000DC4A2 /* ImageView.swift */; };
+		56FB74472BBB608E000DC4A2 /* DeadlinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB74462BBB608E000DC4A2 /* DeadlinesView.swift */; };
+		56FB74492BBB61F8000DC4A2 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB74482BBB61F8000DC4A2 /* TaskModel.swift */; };
+		56FB744F2BBD45EE000DC4A2 /* GroupViewMOdel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB744E2BBD45EE000DC4A2 /* GroupViewMOdel.swift */; };
+		56FB74512BBD4793000DC4A2 /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB74502BBD4793000DC4A2 /* GroupsView.swift */; };
+		56FB74542BBD4859000DC4A2 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB74532BBD4859000DC4A2 /* CreateGroupView.swift */; };
+		56FB74582BBD51BD000DC4A2 /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB74572BBD51BD000DC4A2 /* GroupView.swift */; };
+		56FB745A2BBD54C3000DC4A2 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB74592BBD54C3000DC4A2 /* MessageModel.swift */; };
+		56FB745C2BBE0C0E000DC4A2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 56FB745B2BBE0C0E000DC4A2 /* FirebaseStorage */; };
+		56FB74622BBF32D6000DC4A2 /* DocumentPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB74612BBF32D6000DC4A2 /* DocumentPreview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,12 +74,19 @@
 		5661E3A72BB58C2C00AF450B /* TabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
 		5661E3AD2BB5926C00AF450B /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		5661E3AF2BB5960000AF450B /* PdfModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfModel.swift; sourceTree = "<group>"; };
-		5661E3B12BB596A200AF450B /* kZ7F8D-24mar25plany.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "kZ7F8D-24mar25plany.pdf"; path = "CzasWolny/kZ7F8D-24mar25plany.pdf"; sourceTree = SOURCE_ROOT; };
 		5661E3B32BB6D68700AF450B /* GroupChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChoiceView.swift; sourceTree = "<group>"; };
 		5661E3B92BB838CF00AF450B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		5691D10C2BB4C9E9006AD479 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		56FB74422BBAEE7D000DC4A2 /* schedules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = schedules.json; path = CzasWolny/schedules.json; sourceTree = SOURCE_ROOT; };
 		56FB74442BBAF108000DC4A2 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		56FB74462BBB608E000DC4A2 /* DeadlinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlinesView.swift; sourceTree = "<group>"; };
+		56FB74482BBB61F8000DC4A2 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		56FB744E2BBD45EE000DC4A2 /* GroupViewMOdel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewMOdel.swift; sourceTree = "<group>"; };
+		56FB74502BBD4793000DC4A2 /* GroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsView.swift; sourceTree = "<group>"; };
+		56FB74532BBD4859000DC4A2 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
+		56FB74572BBD51BD000DC4A2 /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
+		56FB74592BBD54C3000DC4A2 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
+		56FB74612BBF32D6000DC4A2 /* DocumentPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPreview.swift; sourceTree = "<group>"; };
 		F6CF62D128FBDBFFB46DC92D /* libPods-CzasWolny.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CzasWolny.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9C6BD038B0DEBE38FC27421 /* Pods-CzasWolny.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CzasWolny.debug.xcconfig"; path = "Target Support Files/Pods-CzasWolny/Pods-CzasWolny.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +101,7 @@
 				5649505D2BA6FEAD00C61E43 /* FirebaseAnalyticsSwift in Frameworks */,
 				5649505F2BA6FEAD00C61E43 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				564950592BA6FEAD00C61E43 /* FirebaseAnalytics in Frameworks */,
+				56FB745C2BBE0C0E000DC4A2 /* FirebaseStorage in Frameworks */,
 				5649505B2BA6FEAD00C61E43 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				564950612BA6FEAD00C61E43 /* FirebaseAppCheck in Frameworks */,
 				564950502BA5B2F200C61E43 /* AlertX in Frameworks */,
@@ -124,7 +140,7 @@
 				564950472BA46D4D00C61E43 /* ViewModels */,
 				564950312BA39B7500C61E43 /* Fonts */,
 				564950272BA2E7AD00C61E43 /* Assets.xcassets */,
-				5661E3B12BB596A200AF450B /* kZ7F8D-24mar25plany.pdf */,
+				56FB74422BBAEE7D000DC4A2 /* schedules.json */,
 				564950232BA2E7A900C61E43 /* CzasWolnyApp.swift */,
 				564950372BA39C7800C61E43 /* Info.plist */,
 				564950622BA7003700C61E43 /* GoogleService-Info.plist */,
@@ -153,8 +169,8 @@
 		564950472BA46D4D00C61E43 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				56FB744E2BBD45EE000DC4A2 /* GroupViewMOdel.swift */,
 				5661E3B92BB838CF00AF450B /* ContentViewModel.swift */,
-				56FB74422BBAEE7D000DC4A2 /* schedules.json */,
 				564950412BA3AB9F00C61E43 /* LRViewModel.swift */,
 				5649506E2BA7103D00C61E43 /* VerificationViewModel.swift */,
 			);
@@ -164,6 +180,8 @@
 		564950482BA46D5C00C61E43 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				56FB74592BBD54C3000DC4A2 /* MessageModel.swift */,
+				56FB74482BBB61F8000DC4A2 /* TaskModel.swift */,
 				5661E3AF2BB5960000AF450B /* PdfModel.swift */,
 				5661E3A52BB58AD300AF450B /* Tab.swift */,
 				564950432BA3ABBC00C61E43 /* LRModel.swift */,
@@ -201,11 +219,13 @@
 		5661E3AB2BB5901600AF450B /* MainMenuViews */ = {
 			isa = PBXGroup;
 			children = (
+				56FB74522BBD479E000DC4A2 /* GroupsViews */,
 				5661E3AC2BB5902B00AF450B /* TabMenuViews */,
 				5691D10C2BB4C9E9006AD479 /* MainView.swift */,
 				5661E3B32BB6D68700AF450B /* GroupChoiceView.swift */,
 				5661E3AD2BB5926C00AF450B /* ScheduleView.swift */,
 				56FB74442BBAF108000DC4A2 /* ImageView.swift */,
+				56FB74462BBB608E000DC4A2 /* DeadlinesView.swift */,
 			);
 			path = MainMenuViews;
 			sourceTree = "<group>";
@@ -234,6 +254,17 @@
 				564950452BA3ACE100C61E43 /* RegisterView.swift */,
 			);
 			path = Reg;
+			sourceTree = "<group>";
+		};
+		56FB74522BBD479E000DC4A2 /* GroupsViews */ = {
+			isa = PBXGroup;
+			children = (
+				56FB74532BBD4859000DC4A2 /* CreateGroupView.swift */,
+				56FB74502BBD4793000DC4A2 /* GroupsView.swift */,
+				56FB74572BBD51BD000DC4A2 /* GroupView.swift */,
+				56FB74612BBF32D6000DC4A2 /* DocumentPreview.swift */,
+			);
+			path = GroupsViews;
 			sourceTree = "<group>";
 		};
 		E7B60B233ADD913C08EF9008 /* Pods */ = {
@@ -273,6 +304,7 @@
 				5649506A2BA70A4700C61E43 /* FirebaseFirestoreSwift */,
 				565B821B2BAE1D7C0038F935 /* Pow */,
 				5691D10A2BB36522006AD479 /* FirebaseAuth */,
+				56FB745B2BBE0C0E000DC4A2 /* FirebaseStorage */,
 			);
 			productName = CzasWolny;
 			productReference = 564950202BA2E7A900C61E43 /* CzasWolny.app */;
@@ -322,7 +354,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5649502B2BA2E7AD00C61E43 /* Preview Assets.xcassets in Resources */,
-				5661E3B22BB596A200AF450B /* kZ7F8D-24mar25plany.pdf in Resources */,
 				5649503E2BA3A1E700C61E43 /* FallingSkyBd.otf in Resources */,
 				564950632BA7003700C61E43 /* GoogleService-Info.plist in Resources */,
 				5649503C2BA39F8B00C61E43 /* FallingSkyBlk.otf in Resources */,
@@ -367,16 +398,24 @@
 				5661E3B02BB5960000AF450B /* PdfModel.swift in Sources */,
 				564950442BA3ABBC00C61E43 /* LRModel.swift in Sources */,
 				56FB74452BBAF108000DC4A2 /* ImageView.swift in Sources */,
+				56FB744F2BBD45EE000DC4A2 /* GroupViewMOdel.swift in Sources */,
 				564950402BA3AA3C00C61E43 /* LoginView.swift in Sources */,
+				56FB74492BBB61F8000DC4A2 /* TaskModel.swift in Sources */,
+				56FB74582BBD51BD000DC4A2 /* GroupView.swift in Sources */,
 				5691D10D2BB4C9E9006AD479 /* MainView.swift in Sources */,
 				5649506F2BA7103D00C61E43 /* VerificationViewModel.swift in Sources */,
+				56FB74622BBF32D6000DC4A2 /* DocumentPreview.swift in Sources */,
 				5661E3A62BB58AD300AF450B /* Tab.swift in Sources */,
 				564950532BA6495D00C61E43 /* EmailConfirmationView.swift in Sources */,
 				5661E3BA2BB838CF00AF450B /* ContentViewModel.swift in Sources */,
+				56FB74512BBD4793000DC4A2 /* GroupsView.swift in Sources */,
 				5661E3B42BB6D68800AF450B /* GroupChoiceView.swift in Sources */,
 				564950462BA3ACE100C61E43 /* RegisterView.swift in Sources */,
 				564950422BA3AB9F00C61E43 /* LRViewModel.swift in Sources */,
+				56FB74542BBD4859000DC4A2 /* CreateGroupView.swift in Sources */,
 				5661E3A82BB58C2C00AF450B /* TabItemView.swift in Sources */,
+				56FB745A2BBD54C3000DC4A2 /* MessageModel.swift in Sources */,
+				56FB74472BBB608E000DC4A2 /* DeadlinesView.swift in Sources */,
 				564950242BA2E7A900C61E43 /* CzasWolnyApp.swift in Sources */,
 				5661E3AE2BB5926C00AF450B /* ScheduleView.swift in Sources */,
 				564950512BA5B3F600C61E43 /* EnterView.swift in Sources */,
@@ -669,6 +708,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 564950572BA6FEAD00C61E43 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		56FB745B2BBE0C0E000DC4A2 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 564950572BA6FEAD00C61E43 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

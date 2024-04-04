@@ -10,9 +10,10 @@ import SwiftUI
 struct ImageView: View {
     @ObservedObject var imageLoader: ImageLoader
     let placeholder: Image
-    @State private var scale: CGFloat = 1.0
-      @State private var offset = CGSize.zero
-      @State private var lastOffset = CGSize.zero
+    @GestureState private var zoomScale: CGFloat = 1.0
+        @GestureState private var dragOffset: CGSize = .zero
+        @State private var effectiveZoomScale: CGFloat = 1.0
+        @State private var effectiveDragOffset: CGSize = .zero
     init(url: String, placeholder: Image = Image(systemName: "hourglass")) {
         self.placeholder = placeholder
         self.imageLoader = ImageLoader()
@@ -24,21 +25,26 @@ struct ImageView: View {
             Image(uiImage: uiImage)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .scaleEffect(scale)
-                           .offset(x: offset.width, y: offset.height)
+                .scaleEffect(effectiveZoomScale * zoomScale)
+                           .offset(x: (effectiveDragOffset.width + dragOffset.width), y: (effectiveDragOffset.height + dragOffset.height))
                            .gesture(
                                MagnificationGesture()
-                                   .onChanged { value in
-                                       self.scale = max(1.0, value.magnitude)
+                                   .updating($zoomScale) { currentState, gestureState, _ in
+                                       gestureState = currentState
+                                   }
+                                   .onEnded { value in
+                                       self.effectiveZoomScale *= value
+                                       self.effectiveZoomScale = max(1.0, self.effectiveZoomScale)
                                    }
                            )
                            .simultaneousGesture(
                                DragGesture()
-                                   .onChanged { value in
-                                       self.offset = CGSize(width: value.translation.width + self.lastOffset.width, height: value.translation.height + self.lastOffset.height)
+                                   .updating($dragOffset) { currentState, gestureState, _ in
+                                       gestureState = currentState.translation
                                    }
                                    .onEnded { value in
-                                       self.lastOffset = self.offset
+                                       self.effectiveDragOffset.width += value.translation.width
+                                       self.effectiveDragOffset.height += value.translation.height
                                    }
                            )
         } else {

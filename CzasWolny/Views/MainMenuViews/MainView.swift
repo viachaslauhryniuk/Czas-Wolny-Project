@@ -44,11 +44,12 @@ struct MainView: View {
                 GroupChoiceView().environmentObject(vm)
             }
             else{
-                Text("Terminy")
+                DeadlinesView()
+                    .environmentObject(vm)
             }
         case .groups:
             
-            Text("Grupy")
+                GroupsView()
         case .schedule:
             if vm.selectedGroup.isEmpty {
                 GroupChoiceView().environmentObject(vm)

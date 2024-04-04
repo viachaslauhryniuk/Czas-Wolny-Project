@@ -91,9 +91,9 @@ struct SelectButton: View {
 extension ContentViewModel {
     func updateSelectedGroup() {
         if selectedYear != 3 {
-            selectedGroup = "\(selectedYear)I \(selectGroup)"
+            selectedGroup = "\(selectedYear*2)I \(selectGroup)"
         } else {
-            selectedGroup = "\(selectedYear)I \(selectedSpeciality) \(selectGroup)"
+            selectedGroup = "\(selectedYear*2)I \(selectedSpeciality) \(selectGroup)"
         }
     }
 }
