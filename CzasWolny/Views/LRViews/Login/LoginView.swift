@@ -4,7 +4,7 @@ import Pow
 struct LoginView: View {
     @Environment(\.dismiss)var dismiss
     
-    @EnvironmentObject var vm : UsersViewModel
+    @ObservedObject var vm = UsersViewModel()
 
     @State var viewState = CGSize.zero
     var body: some View {
@@ -55,6 +55,7 @@ struct LoginView: View {
                                 }
                             }
                             else{
+                                
                                 vm.transfer = true
                             }
                         })})

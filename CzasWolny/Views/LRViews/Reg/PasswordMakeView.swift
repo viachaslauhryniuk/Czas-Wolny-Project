@@ -98,6 +98,7 @@ struct PasswordMakeView: View {
                 Button {
                     vm.validatePassword(vm.password)
                     if !vm.showPasswordError{
+             
                         vm.transfer = true
                     }
                 } label: {

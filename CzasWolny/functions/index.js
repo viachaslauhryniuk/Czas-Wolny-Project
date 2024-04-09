@@ -38,3 +38,5 @@ exports.deleteOldRecord = functions.firestore.document('userscodes/{docId}').onC
         await batch.commit();
     }
 });
+
+

@@ -6,7 +6,7 @@ import Combine
 struct RegisterView: View {
     // This is your ViewModel which you're using to manage your state.
     @Environment(\.dismiss)var dismiss
-    @EnvironmentObject var vm : UsersViewModel
+    @ObservedObject var vm = UsersViewModel()
     @State var cancellable: AnyCancellable?
     
     var body: some View {
@@ -60,7 +60,9 @@ struct RegisterView: View {
                     vm.isLoading = true
                     if !vm.isValidEmail(vm.email){
                         vm.errorMessage = "Wprowadzony adres email jest nieprawidłowy lub nie należy do 'edu.p.lodz.pl'"
-                        vm.errorShow = true
+                        DispatchQueue.main.asyncAfter(deadline: .now()+0.2){
+                            vm.errorShow = true
+                        }
                         vm.isLoading = false
                     }
                     else{
@@ -68,7 +70,9 @@ struct RegisterView: View {
                             vm.existingStatus = status
                             if vm.existingStatus == 1{
                                 vm.errorMessage = "Konto już istnieje"
-                                vm.errorShow = true
+                                DispatchQueue.main.asyncAfter(deadline: .now()+0.2){
+                                    vm.errorShow = true
+                                }
                                 vm.isLoading = false
                                 vm.email = ""
                             }
@@ -83,7 +87,7 @@ struct RegisterView: View {
                                         .sink(receiveCompletion: { _ in }, receiveValue: { response in
                                             if response.data.status != "valid" {
                                                 vm.errorMessage = "Wprowadzony adres email\n nie istnieje w ramach 'edu.p.lodz.pl'"
-                                                vm.errorShow = true
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){ vm.errorShow = true}
                                                 vm.isLoading = false
                                             }
                                             else {
@@ -146,6 +150,7 @@ struct RegisterView: View {
             EmailConfirmationView()
                 .presentationDetents([.fraction(0.4)])
                 .environmentObject(vm)
+               
         }
     }
 }

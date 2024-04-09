@@ -6,65 +6,88 @@
 //
 
 import SwiftUI
-
+import AlertX
 struct CreateGroupView: View {
     @EnvironmentObject var vm: GroupViewModel
     @Environment (\.dismiss) var dismiss
     var body: some View {
         VStack {
-            Section(header: Text("Group Name").foregroundColor(.blue)) {
-                TextField("Enter Group Name", text: $vm.groupName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+            Section(header: Text("Nazwa grupy").foregroundColor(Color("BlueAccent"))  .font(Font.custom("FallingSkyBd", size: 18 ))) {
+                TextField("Wprowadż nazwę grupy", text: $vm.groupName)
+                    .padding(16)
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke( Color("BlueAccent") , lineWidth: 2))
+                    
+                    .padding(.horizontal,10)
+                    .padding(.bottom,15)
             }
             
-            Section(header: Text("Members").foregroundColor(.blue)) {
-                TextField("Enter Member Email", text: $vm.memberEmail)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+            Section(header: Text("Członki grupy").foregroundColor(Color("BlueAccent"))  .font(Font.custom("FallingSkyBd", size: 18 ))) {
+                TextField("Wprowadż adres mailowy członka", text: $vm.memberEmail)
+                    .padding(16)
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke( Color("BlueAccent") , lineWidth: 2))
+                    
+                    .padding(.horizontal,10)
+                    .padding(.bottom,15)
                 
                 Button(action: {
                     // Check if the email is not the user's own and is registered
-                    if vm.memberEmail != vm.creatorEmail { vm.checkIfUserExists(completion: { status in
-                        vm.existingStatus = status
-                        if vm.existingStatus == 1{
-                            vm.members.append(vm.memberEmail)
-                            vm.memberEmail = ""
+                    if !vm.memberEmail.isEmpty{
+                        if vm.memberEmail != vm.creatorEmail { vm.checkIfUserExists(completion: { status in
+                            vm.existingStatus = status
+                            if vm.existingStatus != 1{
+                                vm.alertMessage = "Ten student nie ma jeszcze konta tutaj"
+                                DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
+                                    vm.showAlert = true
+                                }
+                            }
+                            else{
+                                vm.members.append(vm.memberEmail)
+                                vm.memberEmail = ""
+                            }
+                        })
                         }
-                    })
-                        
                       
                     }
                 }) {
-                    Text("Add Member")
-                        .foregroundColor(.white)
+                    Text("Dodaj członka")
+                        .font(.custom("FallingSkyBlk", size: 20))
+                        .foregroundStyle(Color.white)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color("BlueAccent"))
                         .cornerRadius(10)
                 }
                 
                 ForEach(vm.members, id: \.self) { member in
                     Text(member)
                         .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 2))
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("BlueAccent"), lineWidth: 2))
                 }
             }
             
             Button{
-                vm.createGroup()
+                if vm.members == []{
+                    vm.alertMessage = "Grupa nie może być pusta"
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
+                        vm.showAlert = true
+                    }
+                }
+                else{
+                    vm.createGroup()
+                }
                 vm.members = []
                 vm.groupName = ""
             }
         label:{
-                Text("Create Group")
-                    .foregroundColor(.white)
+                Text("Stwórz grupę")
+                .font(.custom("FallingSkyBlk", size: 20))
+                .foregroundStyle(Color.white)
                     .padding()
-                    .background(Color.blue)
+                    .background(Color("BlueAccent"))
                     .cornerRadius(10)
                 
             }
         }
-        .navigationBarTitle("Create Group", displayMode: .inline)
+        .navigationBarTitle("Tworzenie zespołu", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: {
             dismiss()
@@ -72,9 +95,23 @@ struct CreateGroupView: View {
             vm.groupName = ""
         }) {
             Image(systemName: "chevron.left")
-                .foregroundColor(.blue)
+                .foregroundColor(Color("BlueAccent"))
                 .font(.title)
         })
+        .alertX(isPresented: $vm.showAlert) {
+            AlertX(title: Text("Błąd"),message:Text(vm.alertMessage),theme: AlertX.Theme.custom(windowColor: Color.white,
+                                                                                                                                                                alertTextColor: Color("BlueAccent"),
+                                                                                                                                                                enableShadow: true,
+                                                                                                                                                                enableRoundedCorners: true,
+                                                                                                                                                                enableTransparency: false,
+                                                                                                                                                                cancelButtonColor: Color("BlueAccent2"),
+                                                                                                                                                                cancelButtonTextColor: Color.white,
+                                                                                                                                                                defaultButtonColor: Color("BlueAccent2"),
+                                                                                                                                                                defaultButtonTextColor: Color("BlueAccent"),
+                                                                                                                                                                roundedCornerRadius: 20),
+                   animation: .classicEffect()
+            )
+        }
     }
 }
 

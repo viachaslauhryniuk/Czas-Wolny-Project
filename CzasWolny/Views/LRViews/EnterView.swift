@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EnterView: View {
-    @ObservedObject var vm = UsersViewModel()
+    @ObservedObject var vm = EnterViewModel()
 
     var body: some View {
         

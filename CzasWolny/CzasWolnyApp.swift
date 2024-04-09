@@ -25,6 +25,7 @@ struct CzasWolnyApp: App {
             let providerFactory = AppCheckDebugProviderFactory()
             AppCheck.setAppCheckProviderFactory(providerFactory)
             FirebaseApp.configure()
+            
             return true
         }
     }

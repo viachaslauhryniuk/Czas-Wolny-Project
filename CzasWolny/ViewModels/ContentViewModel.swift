@@ -4,7 +4,9 @@ import Foundation
 import Combine
 import FirebaseFirestore
 import UserNotifications
+import FirebaseAuth
 final class ContentViewModel: ObservableObject{
+ 
  // MARK: Joint Variables
     @Published var tasks: [Task] = []
     @Published var deletedTasks: [Task] = []{
@@ -25,19 +27,30 @@ final class ContentViewModel: ObservableObject{
     @Published var years = [1, 2, 3]
     @Published var groups = [Array(1...11), Array(1...8), Array(1...3)]
     @Published var specialities = ["EAiBD", "TI", "IO"]
+    @Published var email = ""
     @AppStorage ("selectedGroup") var selectedGroup: String = ""
     
     
     
     
     init(){
+   //    checkUser()
         if let savedItems = UserDefaults.standard.data(forKey: "DeletedTasks"),
            let decodedItems = try? JSONDecoder().decode([Task].self, from: savedItems) {
             self.deletedTasks = decodedItems
         } else {
             self.deletedTasks = []
         }
+      // self.selectedGroup = UserDefaults.standard.string(forKey: "\(email)selectedGroup") ?? ""
     }
+    func checkUser(){
+        if let user = Auth.auth().currentUser {
+            self.email = user.email!
+        } else {
+        // No user is signed in.
+        }
+    }
+    
     func fetchTasks() {
         let db = Firestore.firestore()
         let tasksRef = db.collection("tasks")

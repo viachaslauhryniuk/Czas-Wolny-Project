@@ -101,6 +101,7 @@ struct EmailConfirmationView: View {
         .fullScreenCover(isPresented: $vm.makePass) {
             PasswordMakeView()
                 .environmentObject(vm)
+                
         }
     }
 }

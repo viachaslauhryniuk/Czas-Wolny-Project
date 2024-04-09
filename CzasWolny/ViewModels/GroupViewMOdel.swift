@@ -1,7 +1,6 @@
 import FirebaseFirestore
 import Foundation
 import FirebaseAuth
-
 final class GroupViewModel: ObservableObject
 {
     @Published  var groupName = ""
@@ -10,6 +9,8 @@ final class GroupViewModel: ObservableObject
     @Published var groups:[String] = []
     @Published var members: [String] = []
     @Published var existingStatus: Int = -1
+    @Published var alertMessage = ""
+    @Published var showAlert = false
     let db = Firestore.firestore()
     
     func getUserEmail(){
@@ -58,6 +59,8 @@ final class GroupViewModel: ObservableObject
             }
         }
     }
+    
+    
         }
 
 

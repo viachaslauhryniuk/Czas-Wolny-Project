@@ -70,7 +70,7 @@ struct SpecialityPicker: View {
 }
 
 struct SelectButton: View {
-    @EnvironmentObject var vm: ContentViewModel
+    @EnvironmentObject var vm : ContentViewModel
 
     var body: some View {
         Button(action: {
@@ -86,8 +86,8 @@ struct SelectButton: View {
     .padding(.bottom,5)
     
     }
+    
 }
-
 extension ContentViewModel {
     func updateSelectedGroup() {
         if selectedYear != 3 {
@@ -97,6 +97,7 @@ extension ContentViewModel {
         }
     }
 }
+
 
 
 #Preview {
