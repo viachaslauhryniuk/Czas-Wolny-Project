@@ -1,6 +1,7 @@
 import FirebaseFirestore
 import Foundation
 import FirebaseAuth
+import SwiftUI
 final class GroupViewModel: ObservableObject
 {
     @Published  var groupName = ""
@@ -11,6 +12,7 @@ final class GroupViewModel: ObservableObject
     @Published var existingStatus: Int = -1
     @Published var alertMessage = ""
     @Published var showAlert = false
+    @Published var needsRefresh = false
     let db = Firestore.firestore()
     
     func getUserEmail(){
@@ -56,6 +58,7 @@ final class GroupViewModel: ObservableObject
                 print("Error getting documents: \(err)")
             } else {
                 self.groups = querySnapshot!.documents.compactMap { $0["groupName"] as? String }
+                self.needsRefresh = false
             }
         }
     }

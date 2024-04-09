@@ -34,7 +34,7 @@ struct RegisterView: View {
                         .font(Font.custom("FallingSkyBd", size: 30 ))
                         .foregroundStyle(Color.black)
                         .opacity(vm.verifiCode ? 0 : 1)
-                    Text("p.lodz.pl")
+                    Text("edu.p.lodz.pl")
                         .font(Font.custom("FallingSkyBd", size: 35 ))
                         .foregroundStyle(Color("BlueAccent"))
                 }

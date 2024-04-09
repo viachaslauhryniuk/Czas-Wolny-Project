@@ -46,7 +46,6 @@ struct CreateGroupView: View {
                             }
                         })
                         }
-                      
                     }
                 }) {
                     Text("Dodaj członka")
@@ -56,6 +55,7 @@ struct CreateGroupView: View {
                         .background(Color("BlueAccent"))
                         .cornerRadius(10)
                 }
+
                 
                 ForEach(vm.members, id: \.self) { member in
                     Text(member)
@@ -73,6 +73,7 @@ struct CreateGroupView: View {
                 }
                 else{
                     vm.createGroup()
+                    dismiss()
                 }
                 vm.members = []
                 vm.groupName = ""

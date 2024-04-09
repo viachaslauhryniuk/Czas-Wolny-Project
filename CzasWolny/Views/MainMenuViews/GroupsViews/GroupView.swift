@@ -5,6 +5,7 @@ import FirebaseStorage
 import UniformTypeIdentifiers
 struct GroupView: View {
     @EnvironmentObject var vm: GroupViewModel
+    @EnvironmentObject var vm2: ContentViewModel
     let groupId: String
     @Environment (\.dismiss) var dismiss
     @State var messages: [Message] = []
@@ -13,6 +14,7 @@ struct GroupView: View {
     @State private var inputImage: URL?
     @State private var selectedFile: IdentifiableURL? = nil
     @State var existEmoji = false
+    @State var imageCount = 0
     var body: some View {
         
         ScrollViewReader { scrollView in
@@ -21,156 +23,35 @@ struct GroupView: View {
                     ForEach(messages, id: \.self) { message in
                         if message.isFile {
                             if let url = URL(string: message.content), url.pathExtension.lowercased() == "jpg" || url.pathExtension.lowercased() == "png" {
-                                if message.sender == Auth.auth().currentUser?.email {
-                                    HStack {
-                                        Spacer()
-                                        
-                                        VStack{
-                                           
-                                            AsyncImage(url: url) { image in
-                                                image.resizable()
-                                                    .frame(width: UIScreen.main.bounds.size.width * 0.55, height: UIScreen.main.bounds.size.height * 0.33)
-                                                    .scaledToFit()
-                                    
-                                            } placeholder: {
-                                                ProgressView()
-                                            }
-                                            .background(ChatBubble(isFromCurrentUser: true).fill(Color("BlueAccent")))
-                                        }
-                                        
-                                        .padding()
-                                        .background(ChatBubble(isFromCurrentUser: true).fill(Color("BlueAccent")))
-                                        .foregroundColor(.white)
-                                        .cornerRadius(10)
-                                    }
-                                } else {
-                                     HStack {
-                                        VStack(alignment: .leading){
-                                            HStack{
-                                                Text(message.sender)
-                                                    .font(.custom("FallingSkyBd", size: 12))
-                                                Spacer()
-                                            }
-                                            AsyncImage(url: url) { image in
-                                                image.resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: UIScreen.main.bounds.width * 0.7)
-                                                    
-                                            } placeholder: {
-                                                ProgressView()
-                                            }
-                                        }
-                                        .frame(maxWidth: UIScreen.main.bounds.width * 0.7)
-                                        .padding()
-                                        .background(ChatBubble(isFromCurrentUser: false).fill(Color.gray))
-                                        .foregroundColor(.white)
-                                        .cornerRadius(10)
-                                        Spacer()
-                                    }
-
-                                }
+                                
+                                ImageMessageView(message: message, url: url, imageCount: $imageCount)
+                                    .environmentObject(vm)
                                 
                             } else {
-                                
-                                Button(action: {
-                                    let url = URL(string: message.content)!
-                                    let localURL = FileManager.default.temporaryDirectory.appendingPathComponent(url.lastPathComponent)
-                                    if FileManager.default.fileExists(atPath: localURL.path) {
-                                        self.existEmoji = true
-                                        self.selectedFile = IdentifiableURL(url: localURL)
-                                    } else {
-                                        self.existEmoji = false
-                                        let storageRef = Storage.storage().reference(forURL: url.absoluteString)
-                                        storageRef.write(toFile: localURL) { url, error in
-                                            if let url = url {
-                                                self.selectedFile = IdentifiableURL(url: url)
-                                            } else if let error = error {
-                                                print("Error downloading file: \(error)")
-                                            }
-                                        }
-                                    }
-                                }) {
-                                    if message.sender == Auth.auth().currentUser?.email {
-                                        HStack {
-                                            Spacer()
-                                           
-                                            VStack{
-                                                
-                                                  
-                                                
-                                                CustomLabel(text: "File", systemImage: self.existEmoji ? "eye" : "square.and.arrow.down")
-                                                
-                                                
-                                                    
-                                            }
-                                            .padding()
-                                            .background(ChatBubble(isFromCurrentUser: true).fill(Color("BlueAccent")))
-                                        
-                                            .foregroundColor(.white)
-                                            .cornerRadius(10)
-                                        }
-                                    } else {
-                                        HStack {
-                                            VStack(alignment: .leading){
-                                                Text(message.sender)
-                                                    .font(.custom("FallingSkyBd", size: 12))
-                                                    .padding(.bottom,5)
-                                                
-                                                CustomLabel(text: "File", systemImage: self.existEmoji ? "eye" : "square.and.arrow.down")
-                                            }
-                                                .padding()
-                                                .background(ChatBubble(isFromCurrentUser: false).fill(Color.gray))
-                                                .foregroundColor(.white)
-                                                .cornerRadius(10)
-                                            
-                                            Spacer()
-                                        }
-                                    }
-                                    
-                                }
-                                .sheet(item: $selectedFile) { identifiableURL in
-                                    DocumentPreview(url: identifiableURL.url)
-                                }
-                                
+                                FileMessageView(message: message)
+                                    .environmentObject(vm)
                             }
                         } else {
-                            if message.sender == Auth.auth().currentUser?.email {
-                                HStack {
-                                    Spacer()
-                                    
-                                    Text("\(message.content)")
-                                        .padding()
-                                        .background(ChatBubble(isFromCurrentUser: true).fill(Color("BlueAccent")))
-                                        .foregroundColor(.white)
-                                        .cornerRadius(10)
-                                }
-                            } else {
-                                HStack {
-                                    VStack(alignment: .leading){
-                                    Text(message.sender)
-                                            .font(.custom("FallingSkyBd", size: 12))
-                                            .padding(.bottom,5)
-                                    Text(message.content)
-                                        
-                                    
-                                }
-                                    .padding()
-                                    .background(ChatBubble(isFromCurrentUser: false).fill(Color.gray))
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                                Spacer()
-                                }
-                            }
+                            TextMessageView(message: message)
+                                .environmentObject(vm)
                         }
                     }
+ 
                 }
                 .padding(.horizontal,5)
-                .onChange(of: messages.count) { _ in
-                    scrollView.scrollTo(messages.last, anchor: .bottom)
-                }
-                .onAppear(perform: loadMessages)
+                .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                loadMessages()
+                                scrollView.scrollTo(messages.endIndex-imageCount, anchor: .bottom)
+                            }
+                        }
+                        .onChange(of: messages.count) {
+                            scrollView.scrollTo(messages.endIndex-imageCount, anchor: .bottom)
+                        }
+
             }
         }
+        
         Spacer()
         HStack(spacing: 12) {
             TextField("Nowa Wiadomość", text: $newMessage)
@@ -211,13 +92,22 @@ struct GroupView: View {
             }
             .disabled(newMessage.isEmpty)
         }
+        
+        
         .padding(.horizontal)
         
         
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: {
-                    dismiss()
+                    vm2.isChatViewActive = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
+                        dismiss()
+                     
+                        
+                    }
+                    
+
                 })
                 {
                     Image(systemName: "chevron.left")
@@ -226,10 +116,18 @@ struct GroupView: View {
         }
         .navigationBarBackButtonHidden()
         .navigationBarTitle(groupId, displayMode: .inline)
+        .onDisappear(perform: {
+            vm.getUserEmail()
+            vm.needsRefresh = true
+        })
         
     }
+
     
     
+
+
+
     func loadMessages() {
         let db = Firestore.firestore()
         db.collection("messages")
@@ -311,6 +209,165 @@ struct GroupView: View {
     
     
     
+}
+struct FileMessageView: View {
+    var message: Message
+    @EnvironmentObject var vm: GroupViewModel
+    @State var existEmoji = false
+    @State var selectedFile: IdentifiableURL? = nil
+
+    var body: some View {
+        Button(action: {
+            let url = URL(string: message.content)!
+            let localURL = FileManager.default.temporaryDirectory.appendingPathComponent(url.lastPathComponent)
+            if FileManager.default.fileExists(atPath: localURL.path) {
+                self.existEmoji = true
+                self.selectedFile = IdentifiableURL(url: localURL)
+            } else {
+                self.existEmoji = false
+                let storageRef = Storage.storage().reference(forURL: url.absoluteString)
+                storageRef.write(toFile: localURL) { url, error in
+                    if let url = url {
+                        self.selectedFile = IdentifiableURL(url: url)
+                    } else if let error = error {
+                        print("Error downloading file: \(error)")
+                    }
+                }
+            }
+        }) {
+            HStack {
+                VStack(alignment: .leading){
+                    
+                                                    Text(message.sender)
+                        .foregroundColor(Color.black)
+                                                
+                            .font(.custom("FallingSkyBd", size: 12))
+                 
+                            .padding(.bottom,5)
+                    
+                    CustomLabel(text: "File", systemImage: self.existEmoji ? "eye" : "square.and.arrow.down")
+                        .foregroundStyle(Color.black)
+                }
+                .padding()
+                .background(ChatBubble(isFromCurrentUser: false).fill(Color("BlueAccent2")))
+
+
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                Spacer()
+            }
+        }
+        .sheet(item: $selectedFile) { identifiableURL in
+            DocumentPreview(url: identifiableURL.url)
+        }
+    }
+}
+
+struct TextMessageView: View {
+    var message: Message
+    @EnvironmentObject var vm: GroupViewModel
+
+    var body: some View {
+        if message.sender == Auth.auth().currentUser?.email {
+            HStack {
+                Spacer()
+                Text("\(message.content)")
+                    .padding()
+                    .background(ChatBubble(isFromCurrentUser: true).fill(Color("BlueAccent")))
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+        } else {
+            HStack {
+                VStack(alignment: .leading){
+                  
+                                                    Text(message.sender)
+                        .foregroundColor(Color.black)
+                            .font(.custom("FallingSkyBd", size: 12))
+                          
+                            .padding(.bottom,5)
+                    
+                    Text(message.content)
+                        .foregroundStyle(Color.black)
+                }
+                .padding()
+                .background(ChatBubble(isFromCurrentUser: false).fill(Color("BlueAccent2")))
+
+
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                Spacer()
+            }
+        }
+    }
+}
+
+struct ImageMessageView: View {
+    var message: Message
+    var url: URL
+    @EnvironmentObject var vm: GroupViewModel
+    @Binding var imageCount: Int
+    var body: some View {
+        if message.sender == Auth.auth().currentUser?.email {
+            
+            HStack {
+                Spacer()
+                VStack {
+                    
+                    AsyncImage(url: url) { image in
+                        image.resizable()
+                            .frame(width: UIScreen.main.bounds.size.width * 0.55, height: UIScreen.main.bounds.size.height * 0.33)
+                            .scaledToFit()
+                    } placeholder: {
+                        ZStack{
+                            Color.gray
+                                .frame(width: UIScreen.main.bounds.size.width * 0.55, height: UIScreen.main.bounds.size.height * 0.33)
+                            Image(systemName: "photo")
+                        }
+                    }
+                    .onAppear(perform: {
+                      imageCount += 1
+                    })
+                    .background(ChatBubble(isFromCurrentUser: true).fill(Color("BlueAccent")))
+                }
+                .padding()
+                .background(ChatBubble(isFromCurrentUser: true).fill(Color("BlueAccent")))
+                .foregroundColor(.white)
+                .cornerRadius(10)
+            }
+        } else {
+            HStack {
+                VStack(alignment: .leading){
+                    HStack{
+                       
+                                                       Text(message.sender)
+                            .foregroundColor(Color.black)
+                                .font(.custom("FallingSkyBd", size: 12))
+                               
+                        
+                        Spacer()
+                    }
+                    AsyncImage(url: url) { image in
+                        image.resizable()
+                            .scaledToFit()
+                            .frame(width: UIScreen.main.bounds.width * 0.7)
+                    } placeholder: {
+                        ZStack{
+                            Color.gray
+                                .frame(width: UIScreen.main.bounds.size.width * 0.55, height: UIScreen.main.bounds.size.height * 0.33)
+                            Image(systemName: "photo")
+                        }
+                    }
+                }
+                .frame(maxWidth: UIScreen.main.bounds.width * 0.7)
+                .padding()
+                .background(ChatBubble(isFromCurrentUser: false).fill(Color("BlueAccent2")))
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                Spacer()
+            }
+        }
+    }
 }
 struct CustomLabel: View {
     var text: String

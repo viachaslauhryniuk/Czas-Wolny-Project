@@ -18,6 +18,8 @@ final class ContentViewModel: ObservableObject{
             
         }
     }
+    @Published var isChatViewActive = false
+
     @Published var activeTab:Tab = .groups
     @Published var selectedYear = 1
     @Published var selectGroup = 1
@@ -77,9 +79,10 @@ final class ContentViewModel: ObservableObject{
     
     func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        return formatter.string(from: date)
+            formatter.locale = Locale(identifier: "pl_PL") 
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .medium
+            return formatter.string(from: date)
     }
 
     func scheduleNotification(for task: Task) {

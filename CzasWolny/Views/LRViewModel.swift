@@ -30,7 +30,7 @@ final class UsersViewModel: ObservableObject{
             email = "\(email)@edu.p.lodz.pl"
         }
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            if let error = error {
+            if error != nil {
                 completion(1)
             } else {
                 completion(0)

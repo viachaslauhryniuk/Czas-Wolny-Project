@@ -76,7 +76,7 @@ struct PasswordMakeView: View {
                         .overlay(RoundedRectangle(cornerRadius: 10).stroke(vm.showError ? Color.red : Color("BlueAccent") , lineWidth: 2))
                         .padding(.horizontal,20)
                         .padding(.bottom,vm.showError ? 0 : 25)
-                        .onChange(of: vm.confirmPassword) { newValue in
+                        .onChange(of: vm.confirmPassword) { oldValue, newValue in
                             if vm.password == newValue {
                                 vm.showError = false
                             }
@@ -84,8 +84,9 @@ struct PasswordMakeView: View {
                                 vm.showError = true
                             }
                         }
+                        
                     if vm.showError {
-                        Text("Passwords do not match")
+                        Text("Hasła nie zgadzają się")
                             .foregroundColor(.red)
                             .padding(.bottom,vm.showError ? 25 : 0)
                             .padding(.horizontal,20)
@@ -119,7 +120,7 @@ struct PasswordMakeView: View {
                
             }
             .alertX(isPresented: $vm.showPasswordError, content: {
-                AlertX(title: Text("Błąd"),message:Text ("Password must be at least 8 characters long, and contain at least one uppercase letter, one lowercase letter, and one number"),theme: AlertX.Theme.custom(windowColor: Color.white,
+                AlertX(title: Text("Błąd"),message:Text ("Hasło musi mieć co najmniej 8 znaków i zawierać co najmniej jedną wielką literę, jedną małą literę i jedną cyfrę"),theme: AlertX.Theme.custom(windowColor: Color.white,
                                                                                                                                                                     alertTextColor: Color("BlueAccent"),
                                                                                                                                                                     enableShadow: true,
                                                                                                                                                                     enableRoundedCorners: true,

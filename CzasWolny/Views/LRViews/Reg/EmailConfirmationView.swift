@@ -41,7 +41,7 @@ struct EmailConfirmationView: View {
                             .frame(width: 40, height: 40)
                             .multilineTextAlignment(.center)
                             .focused($focusedField, equals: index)
-                            .onChange(of: vm.enteredCode[index]) { newValue in
+                            .onChange(of: vm.enteredCode[index]) { oldValue, newValue in
                                 vm.enteredCode[index] = String(newValue.prefix(1))
                                 if newValue.isEmpty {
                                     // If the field is empty, move to the previous field.
