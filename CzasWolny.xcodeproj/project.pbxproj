@@ -40,7 +40,7 @@
 		5691D10D2BB4C9E9006AD479 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5691D10C2BB4C9E9006AD479 /* MainView.swift */; };
 		56D3A9CD2BC0849000B470D6 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 56D3A9CC2BC0849000B470D6 /* FirebaseMessaging */; };
 		56D3A9CF2BC4813C00B470D6 /* EnterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D3A9CE2BC4813B00B470D6 /* EnterViewModel.swift */; };
-		56D3A9E32BC49CC800B470D6 /* LRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D3A9E22BC49CC800B470D6 /* LRViewModel.swift */; };
+		56D3A9E52BC5EA3800B470D6 /* LRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D3A9E42BC5EA3800B470D6 /* LRViewModel.swift */; };
 		56FB74432BBAEE7D000DC4A2 /* schedules.json in Resources */ = {isa = PBXBuildFile; fileRef = 56FB74422BBAEE7D000DC4A2 /* schedules.json */; };
 		56FB74452BBAF108000DC4A2 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB74442BBAF108000DC4A2 /* ImageView.swift */; };
 		56FB74472BBB608E000DC4A2 /* DeadlinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB74462BBB608E000DC4A2 /* DeadlinesView.swift */; };
@@ -79,7 +79,7 @@
 		5661E3B92BB838CF00AF450B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		5691D10C2BB4C9E9006AD479 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		56D3A9CE2BC4813B00B470D6 /* EnterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewModel.swift; sourceTree = "<group>"; };
-		56D3A9E22BC49CC800B470D6 /* LRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LRViewModel.swift; path = ../Views/LRViewModel.swift; sourceTree = "<group>"; };
+		56D3A9E42BC5EA3800B470D6 /* LRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRViewModel.swift; sourceTree = "<group>"; };
 		56FB74422BBAEE7D000DC4A2 /* schedules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = schedules.json; path = CzasWolny/schedules.json; sourceTree = SOURCE_ROOT; };
 		56FB74442BBAF108000DC4A2 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		56FB74462BBB608E000DC4A2 /* DeadlinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlinesView.swift; sourceTree = "<group>"; };
@@ -173,11 +173,11 @@
 		564950472BA46D4D00C61E43 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				56D3A9E22BC49CC800B470D6 /* LRViewModel.swift */,
 				56D3A9CE2BC4813B00B470D6 /* EnterViewModel.swift */,
 				56FB744E2BBD45EE000DC4A2 /* GroupViewMOdel.swift */,
 				5661E3B92BB838CF00AF450B /* ContentViewModel.swift */,
 				5649506E2BA7103D00C61E43 /* VerificationViewModel.swift */,
+				56D3A9E42BC5EA3800B470D6 /* LRViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -406,7 +406,6 @@
 				56FB74452BBAF108000DC4A2 /* ImageView.swift in Sources */,
 				56FB744F2BBD45EE000DC4A2 /* GroupViewMOdel.swift in Sources */,
 				564950402BA3AA3C00C61E43 /* LoginView.swift in Sources */,
-				56D3A9E32BC49CC800B470D6 /* LRViewModel.swift in Sources */,
 				56FB74492BBB61F8000DC4A2 /* TaskModel.swift in Sources */,
 				56FB74582BBD51BD000DC4A2 /* GroupView.swift in Sources */,
 				5691D10D2BB4C9E9006AD479 /* MainView.swift in Sources */,
@@ -421,6 +420,7 @@
 				56FB74542BBD4859000DC4A2 /* CreateGroupView.swift in Sources */,
 				5661E3A82BB58C2C00AF450B /* TabItemView.swift in Sources */,
 				56FB745A2BBD54C3000DC4A2 /* MessageModel.swift in Sources */,
+				56D3A9E52BC5EA3800B470D6 /* LRViewModel.swift in Sources */,
 				56FB74472BBB608E000DC4A2 /* DeadlinesView.swift in Sources */,
 				564950242BA2E7A900C61E43 /* CzasWolnyApp.swift in Sources */,
 				5661E3AE2BB5926C00AF450B /* ScheduleView.swift in Sources */,

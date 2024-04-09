@@ -1,15 +1,10 @@
-//
-// Login-Registration view-model
-//  CzasWolny
-//
-//  
-//
+
 
 import Foundation
+
 import SwiftUI
 import FirebaseFirestore
 import FirebaseAuth
-import FirebaseMessaging
 
 
 final class UsersViewModel: ObservableObject{
@@ -17,12 +12,7 @@ final class UsersViewModel: ObservableObject{
     @ObservedObject private var viewModel2 = UserViewModel()
     
     
-    //MARK: WELCOME SCREEN VARIABLES
-    
-    @Published var showLogRegView = false
-    @Published var nextView: ViewStack = .login
-    
-    //-------------------------------------------
+  
     
     
     //MARK: LOGIN VIEW VARIABLES
@@ -66,17 +56,17 @@ final class UsersViewModel: ObservableObject{
     
     func checkIfUserExists(completion: @escaping (Int) -> Void) {
         let db = Firestore.firestore()
-        db.collection("registeredEmails").whereField("email", isEqualTo: email)
-            .getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else if querySnapshot!.documents.count != 0 {
-                    completion(1)
-                } else {
-                    completion(0)
-                }
-            }
-    }
+           db.collection("registeredEmails").whereField("email", isEqualTo: email)
+               .getDocuments() { (querySnapshot, err) in
+                   if let err = err {
+                       print("Error getting documents: \(err)")
+                   } else if querySnapshot!.documents.count != 0 {
+                      completion(1)
+                   } else {
+                      completion(0)
+                   }
+               }
+       }
     
     //--------------------------------------------------------------
     
@@ -94,24 +84,24 @@ final class UsersViewModel: ObservableObject{
     //MARK: FUNCTIONS
     
     func sendEmail() {
-        guard let request = createRequest() else {
-            print("Invalid URL.")
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                print("Error: \(error)")
-            } else if let data = data {
-                let str = String(data: data, encoding: .utf8)
-                print("Received data:\n\(str ?? "")")
+            guard let request = createRequest() else {
+                print("Invalid URL.")
+                return
             }
-        }
-        
-        task.resume()
+
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    print("Error: \(error)")
+                } else if let data = data {
+                    let str = String(data: data, encoding: .utf8)
+                    print("Received data:\n\(str ?? "")")
+                }
+            }
+            
+            task.resume()
     }
     
-    
+
     func checkVerificationCode(completion: @escaping (Int) -> Void) {
         let db = Firestore.firestore()
         let collectionRef = db.collection("userscodes")
@@ -135,7 +125,7 @@ final class UsersViewModel: ObservableObject{
     }
     
     //-----------------------------------------------------------
-    
+
     
     //MARK: PASSWORD MAKE VIEW VARIABLES
     
@@ -152,26 +142,26 @@ final class UsersViewModel: ObservableObject{
     //FUNCTIONS
     
     func validatePassword(_ password: String) {
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")
-        if passwordTest.evaluate(with: password) {
-            let user = User(email: self.email)
-            viewModel2.addUser(user: user)
-            Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
-                if let error = error {
-                    print("Error creating user: \(error.localizedDescription)")
-                } else {
-                    print("User created successfully!")
-                }
-            }
-            self.showPasswordError = false
-        } else {
-            self.showPasswordError = true
-        }
-    }
+           let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")
+           if passwordTest.evaluate(with: password) {
+               let user = User(email: self.email)
+               viewModel2.addUser(user: user)
+               Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
+                      if let error = error {
+                          print("Error creating user: \(error.localizedDescription)")
+                      } else {
+                          print("User created successfully!")
+                      }
+                  }
+               self.showPasswordError = false
+           } else {
+               self.showPasswordError = true
+           }
+       }
     
     
     //-------------------------------------------------------------
-    
+  
     
     
     //MARK: OTHER FUNCTIONS:
@@ -190,15 +180,9 @@ final class UsersViewModel: ObservableObject{
         let bodyData = "from=qwerty33566666@gmail.com&fromName=Viachaslau&subject=Your Verification Code&bodyText=Hey!\n Your verification code is \(confirmationCode)&to=\(self.email)&isTransactional=false"
         request.httpBody = bodyData.data(using: .utf8)
         let emailVerification = EmailVerification(email: "\(self.email)", code: "\(confirmationCode)", expiry: Timestamp(date: Date().addingTimeInterval(15*60)))
-        viewModel.addEmailVerification(emailVerification: emailVerification)
+                    viewModel.addEmailVerification(emailVerification: emailVerification)
         return request
     }
-    
-    
-
-
-
-
 
     
    
@@ -207,8 +191,4 @@ final class UsersViewModel: ObservableObject{
 
 
     }
-   
-
-  
-
 
