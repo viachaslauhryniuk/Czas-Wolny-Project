@@ -1,9 +1,8 @@
-
 import SwiftUI
 import Pow
 struct LoginView: View {
     @Environment(\.dismiss)var dismiss
-    
+
     @ObservedObject var vm = UsersViewModel()
 
     @State var viewState = CGSize.zero
@@ -12,8 +11,8 @@ struct LoginView: View {
             Rectangle()
                 .fill(.ultraThinMaterial)
                 .ignoresSafeArea()
-            NavigationStack{
-                
+            NavigationStack {
+
                 VStack {
                     Image("Book")
                         .resizable()
@@ -29,17 +28,17 @@ struct LoginView: View {
                                 vm.textOpacity = 1.0
                             }
                         }
-                    Group{
+                    Group {
                         TextField("Wprowadz email", text: $vm.email)
                         SecureField("Wprowadź swoje hasło", text: $vm.password)
                     }
                     .padding(16)
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(vm.showCodeError ? Color.red : Color("BlueAccent") , lineWidth: 2))
-                    
-                    .padding(.horizontal,10)
-                    .padding(.bottom,15)
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(vm.showCodeError ? Color.red : Color("BlueAccent"), lineWidth: 2))
+
+                    .padding(.horizontal, 10)
+                    .padding(.bottom, 15)
                     .changeEffect(.shake(rate: .fast), value: vm.shakeEffect)
-                    .offset(y:-50)
+                    .offset(y: -50)
                     .opacity(vm.textOpacity)
                     Button(action: {
                         vm.signInUser(completion: { status in
@@ -53,13 +52,11 @@ struct LoginView: View {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                     vm.password = ""
                                 }
-                            }
-                            else{
-                                
+                            } else {
+
                                 vm.transfer = true
                             }
-                        })})
-                    {
+                        })}) {
                         Text("Login")
                             .font(.custom("FallingSkyBlk", size: 18))
                             .foregroundColor(.white)
@@ -68,10 +65,10 @@ struct LoginView: View {
                             .background(Color("BlueAccent"))
                             .cornerRadius(15.0)
                     }
-                    .offset(y:-50)
+                    .offset(y: -50)
                     .opacity(vm.textOpacity)
                     .conditionalEffect(.repeat(.shine(duration: 2), every: (.seconds(4))), condition: true)
-                    
+
                 }
                                 .background(
                                     Image("AnimImg")
@@ -91,7 +88,7 @@ struct LoginView: View {
                                 )
                 .padding()
                 .navigationBarBackButtonHidden()
-                
+
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button(action: {
@@ -107,7 +104,7 @@ struct LoginView: View {
                     }
                 }
             }
-        
+
            }
         .onAppear {
                   withAnimation(.spring()) {
@@ -117,14 +114,13 @@ struct LoginView: View {
                       vm.appearBackground = true
                   }
               }
-        
+
         .fullScreenCover(isPresented: $vm.transfer) {
             MainView()
         }
         .tint(Color("BlueAccent"))
         }
     }
-
 
 #Preview {
     LoginView()

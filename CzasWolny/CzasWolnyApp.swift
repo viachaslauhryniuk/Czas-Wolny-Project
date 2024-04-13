@@ -1,12 +1,10 @@
-
 import Firebase
 import SwiftUI
 import FirebaseAuth
 
 @main
 struct CzasWolnyApp: App {
-   
-    
+
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
         var body: some Scene {
@@ -14,7 +12,7 @@ struct CzasWolnyApp: App {
                 if Auth.auth().currentUser != nil {
                     MainView()
                 } else {
-                    EnterView() 
+                    EnterView()
                 }
             }
         }
@@ -25,7 +23,7 @@ struct CzasWolnyApp: App {
             let providerFactory = AppCheckDebugProviderFactory()
             AppCheck.setAppCheckProviderFactory(providerFactory)
             FirebaseApp.configure()
-            
+
             return true
         }
     }

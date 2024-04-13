@@ -10,24 +10,23 @@ import SwiftUI
 struct DeadlinesView: View {
     @EnvironmentObject var vm: ContentViewModel
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             VStack {
-                
-              
+
                 if vm.tasks.isEmpty {
                     Text("Nie ma zadań dla twojej grupy")
                         .foregroundColor(Color.gray)
                         .font(.custom("FallingSkyBd", size: 25))
-                        .padding(.horizontal,10)
+                        .padding(.horizontal, 10)
                 } else {
                     List(vm.tasks) { task in
-                        
-                            HStack{
+
+                            HStack {
                                 Image(systemName: task.deadline.dateValue() < Date() ? "exclamationmark.triangle" : "timer")
                                     .imageScale(.large)
                                     .foregroundStyle(Color("BlueAccent"))
                                 VStack(alignment: .leading) {
-                                HStack{
+                                HStack {
                                     Text(task.title)
                                         .font(.custom("FallingSkyBd", size: 23))
                                         .foregroundStyle(Color("BlueAccent"))
@@ -46,11 +45,11 @@ struct DeadlinesView: View {
                                     .font(Font.custom("FallingSkyBd", size: 12 ))
                             }
                         }
-                            
+
                         .frame(width: 300, alignment: .leading)
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 8).fill(Color.white))
-                       
+
                         .swipeActions(edge: .trailing) {
                                                    Button {
                                                        vm.deleteTask(task)
@@ -60,28 +59,24 @@ struct DeadlinesView: View {
                                                    .labelStyle(.iconOnly)
                                                    .tint(.green)
                                                }
-                        
+
                     }
                     .listStyle(PlainListStyle())
-                    
+
                 }
-              
+
             }
             .onAppear {
                 vm.notificationpermission()
                 vm.fetchTasks()
-                
+
             }
             .navigationBarTitle("Twoje Terminy", displayMode: .inline)
         }
-        
-       
-        
+
             }
 
-          
         }
-
 
 #Preview {
     DeadlinesView()

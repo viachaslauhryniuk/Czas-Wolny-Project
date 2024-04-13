@@ -55,7 +55,6 @@ struct ImageView: View {
     }
 }
 
-
 #Preview {
     ImageView(url: "")
 }

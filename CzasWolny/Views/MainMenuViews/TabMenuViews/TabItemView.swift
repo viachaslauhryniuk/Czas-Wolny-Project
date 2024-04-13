@@ -1,15 +1,13 @@
-
-
 import SwiftUI
 
 struct TabItemView: View {
-    var tint:Color
-    var inactiveTint:Color
-    var tab:Tab
-    var animation:Namespace.ID
-       
-    @Binding var activeTab:Tab
-       
+    var tint: Color
+    var inactiveTint: Color
+    var tab: Tab
+    var animation: Namespace.ID
+
+    @Binding var activeTab: Tab
+
     var body: some View {
            VStack {
                Image(systemName: tab.systemImage)
@@ -28,7 +26,7 @@ struct TabItemView: View {
            }
            .frame(maxWidth: .infinity)
            .contentShape(Rectangle())
-           
+
            .onTapGesture {
                activeTab = tab
            }

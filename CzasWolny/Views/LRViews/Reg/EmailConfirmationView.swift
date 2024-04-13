@@ -1,4 +1,3 @@
-
 import SwiftUI
 import Pow
 
@@ -24,8 +23,8 @@ struct EmailConfirmationView: View {
                     .font(Font.custom("FallingSkyBd", size: 20 ))
                     .foregroundStyle(Color.black)
                     .multilineTextAlignment(.center)
-                    .padding(.bottom,15)
-                    .padding(.horizontal,15)
+                    .padding(.bottom, 15)
+                    .padding(.horizontal, 15)
 
                 // This HStack contains your text fields for entering the verification code.
                 HStack {
@@ -41,7 +40,7 @@ struct EmailConfirmationView: View {
                             .frame(width: 40, height: 40)
                             .multilineTextAlignment(.center)
                             .focused($focusedField, equals: index)
-                            .onChange(of: vm.enteredCode[index]) { oldValue, newValue in
+                            .onChange(of: vm.enteredCode[index]) { _, newValue in
                                 vm.enteredCode[index] = String(newValue.prefix(1))
                                 if newValue.isEmpty {
                                     // If the field is empty, move to the previous field.
@@ -86,13 +85,13 @@ struct EmailConfirmationView: View {
                 } label: {
                     Label("ber", systemImage: "checkmark")
                         .labelStyle(.iconOnly)
-                        .font(.system(size: 27 , weight: .bold))
+                        .font(.system(size: 27, weight: .bold))
                         .foregroundStyle(Color.white)
                 }
                 .frame(width: 80, height: 50)
                 .background(Color("BlueAccent"))
                 .clipShape(.rect(cornerRadius: 10))
-                .padding(.bottom,5)
+                .padding(.bottom, 5)
             }
         }
         .onAppear(perform: {
@@ -101,7 +100,7 @@ struct EmailConfirmationView: View {
         .fullScreenCover(isPresented: $vm.makePass) {
             PasswordMakeView()
                 .environmentObject(vm)
-                
+
         }
     }
 }

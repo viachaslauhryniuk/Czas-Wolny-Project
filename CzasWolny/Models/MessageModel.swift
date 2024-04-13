@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-struct Message: Identifiable , Hashable{
+struct Message: Identifiable, Hashable {
     let id = UUID()
     let sender: String
     let content: String
@@ -32,7 +32,3 @@ struct ChatBubble: Shape {
         return Path(path.cgPath)
     }
 }
-
-
-
-

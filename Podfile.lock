@@ -1,16 +1,3 @@
-PODS:
-  - SwiftUIWheelPicker (1.0.0)
-
-DEPENDENCIES:
-  - SwiftUIWheelPicker
-
-SPEC REPOS:
-  trunk:
-    - SwiftUIWheelPicker
-
-SPEC CHECKSUMS:
-  SwiftUIWheelPicker: 798a80c095036933cb232c4ee62dfb1d188d860c
-
-PODFILE CHECKSUM: bf5660e85d5e869cdae6d114dff5440f36b7f2a8
+PODFILE CHECKSUM: 2d78e5cb0070d80ef4199f3f032f80218f537af5
 
 COCOAPODS: 1.15.2

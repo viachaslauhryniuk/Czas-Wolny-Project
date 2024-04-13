@@ -2,6 +2,5 @@
 platform :ios, '16.4'
 
 target 'CzasWolny' do
-pod 'SwiftUIWheelPicker'
 
 end

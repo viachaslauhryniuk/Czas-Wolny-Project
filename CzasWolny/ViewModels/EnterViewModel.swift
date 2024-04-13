@@ -6,9 +6,9 @@
 //
 
 import Foundation
-final class EnterViewModel: ObservableObject{
-    
+final class EnterViewModel: ObservableObject {
+
     @Published var showLogRegView = false
     @Published var nextView: ViewStack = .login
-    
+
 }

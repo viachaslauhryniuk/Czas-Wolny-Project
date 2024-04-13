@@ -16,7 +16,7 @@ struct GroupsView: View {
             ZStack {
                 // Set the background to white
                 Color.white.edgesIgnoringSafeArea(.all)
-                
+
                 // Display the list or the 'no groups' message
                 if vm.groups.isEmpty {
                     Text("Nie masz chatów")
@@ -24,11 +24,16 @@ struct GroupsView: View {
                         .font(.custom("FallingSkyBd", size: 25))
                 } else {
                     List(vm.groups, id: \.self) { group in
-                        NavigationLink(destination: GroupView(groupId: group).environmentObject(vm).environmentObject(vm2).onAppear { vm2.isChatViewActive = true }
+                        NavigationLink(destination: GroupView(groupId: group)
+                            .environmentObject(vm)
+                            .environmentObject(vm2)
+                            .onAppear {
+                                vm2.isChatViewActive = true
+                            }
                             ) {
                             Text(group)
                                 .padding()
-                                
+
                         }
                     }
                     .listStyle(PlainListStyle())
@@ -39,8 +44,13 @@ struct GroupsView: View {
                        vm.loadGroups()
                    }
             .navigationBarTitle("Twoje Chaty", displayMode: .inline)
-            .navigationBarItems(leading:  Button(action: {
-                if !isLoggedOut{
+            .navigationBarItems(leading: NavigationLink(destination: CreateGroupView().environmentObject(vm)) {
+                Image(systemName: "plus")
+                    .foregroundColor(Color("BlueAccent"))
+                    .font(.title)
+                    .imageScale(.small)
+            }, trailing: Button(action: {
+                if !isLoggedOut {
                     do {
                         try Auth.auth().signOut()
                         vm2.selectedGroup = ""
@@ -49,14 +59,10 @@ struct GroupsView: View {
                     } catch let signOutError as NSError {
                         print("Error signing out: %@", signOutError)
                     }
-                }
-                else{}}) {
-                Image(systemName: "arrowshape.turn.up.left")
-            }, trailing: NavigationLink(destination: CreateGroupView().environmentObject(vm)) {
-                Image(systemName: "plus.circle.fill")
-                    .foregroundColor(Color("BlueAccent"))
-                    .font(.title)
-            })
+                } else {}}) {
+                    Image(systemName: "rectangle.portrait.and.arrow.right.fill")
+                        .foregroundColor(Color("BlueAccent"))
+                })
         }
         .onAppear(perform: {
             vm.getUserEmail()
@@ -66,8 +72,6 @@ struct GroupsView: View {
         }
     }
 }
-
-
 
 #Preview {
     GroupsView()

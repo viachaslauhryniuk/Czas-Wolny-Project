@@ -1,17 +1,15 @@
-
-
 import SwiftUI
-import SwiftUIWheelPicker
+
 struct GroupChoiceView: View {
     @EnvironmentObject var vm: ContentViewModel
     var body: some View {
-       
+
             VStack(spacing: 20) {
                 Text("Aby zobaczyć zawartość tej sekcji, wybierz swoją grupę")
                     .font(.custom("FallingSkyBd", size: 30))
                     .foregroundStyle(Color("BlueAccent"))
                     .padding(12)
-                    .padding(.vertical,12)
+                    .padding(.vertical, 12)
                     .multilineTextAlignment(.center)
                 Picker("Year", selection: $vm.selectedYear) {
                     ForEach(vm.years, id: \.self) {
@@ -19,27 +17,25 @@ struct GroupChoiceView: View {
                     }
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                
+
                 if vm.selectedYear != 3 {
                     Text("Grupa: ")
                         .font(Font.custom("FallingSkyBd", size: 18))
                         .foregroundStyle(Color.black)
                     GroupPicker(groups: vm.groups[vm.selectedYear - 1], selection: $vm.selectGroup)
-                        }
-                else {
+                        } else {
                     SpecialityPicker(specialities: vm.specialities, selection: $vm.selectedSpeciality)
                     Text("Grupa: ")
                         .font(Font.custom("FallingSkyBd", size: 18))
                         .foregroundStyle(Color.black)
                     GroupPicker(groups: vm.groups[vm.selectedYear - 1], selection: $vm.selectGroup)
-                }  
+                }
                 SelectButton(vm: _vm)
             }
-            
+
             .padding()
         }
     }
-
 
 struct GroupPicker: View {
     let groups: [Int]
@@ -70,7 +66,7 @@ struct SpecialityPicker: View {
 }
 
 struct SelectButton: View {
-    @EnvironmentObject var vm : ContentViewModel
+    @EnvironmentObject var vm: ContentViewModel
 
     var body: some View {
         Button(action: {
@@ -83,10 +79,10 @@ struct SelectButton: View {
     .frame(width: 300, height: 60)
     .background(Color("BlueAccent"))
     .clipShape(.rect(cornerRadius: 15))
-    .padding(.bottom,5)
-    
+    .padding(.bottom, 5)
+
     }
-    
+
 }
 extension ContentViewModel {
     func updateSelectedGroup() {
@@ -97,8 +93,6 @@ extension ContentViewModel {
         }
     }
 }
-
-
 
 #Preview {
     GroupChoiceView()

@@ -12,21 +12,21 @@ struct GroupView: View {
     @State var newMessage = ""
     @State private var isShowingFilePicker = false
     @State private var inputImage: URL?
-    @State private var selectedFile: IdentifiableURL? = nil
+    @State private var selectedFile: IdentifiableURL?
     @State var existEmoji = false
     @State var imageCount = 0
     var body: some View {
-        
+
         ScrollViewReader { scrollView in
             ScrollView {
                 VStack {
                     ForEach(messages, id: \.self) { message in
                         if message.isFile {
                             if let url = URL(string: message.content), url.pathExtension.lowercased() == "jpg" || url.pathExtension.lowercased() == "png" {
-                                
+
                                 ImageMessageView(message: message, url: url, imageCount: $imageCount)
                                     .environmentObject(vm)
-                                
+
                             } else {
                                 FileMessageView(message: message)
                                     .environmentObject(vm)
@@ -36,9 +36,9 @@ struct GroupView: View {
                                 .environmentObject(vm)
                         }
                     }
- 
+
                 }
-                .padding(.horizontal,5)
+                .padding(.horizontal, 5)
                 .onAppear {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 loadMessages()
@@ -51,7 +51,7 @@ struct GroupView: View {
 
             }
         }
-        
+
         Spacer()
         HStack(spacing: 12) {
             TextField("Nowa Wiadomość", text: $newMessage)
@@ -59,8 +59,7 @@ struct GroupView: View {
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
                 .padding(.horizontal)
-            
-            
+
             Button(action: {
                 self.isShowingFilePicker = true
             }) {
@@ -92,25 +91,21 @@ struct GroupView: View {
             }
             .disabled(newMessage.isEmpty)
         }
-        
-        
+
         .padding(.horizontal)
-        
-        
+
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: {
                     vm2.isChatViewActive = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                         dismiss()
-                     
-                        
-                    }
-                    
 
-                })
-                {
+                    }
+
+                }) {
                     Image(systemName: "chevron.left")
+
                 }
             }
         }
@@ -120,13 +115,8 @@ struct GroupView: View {
             vm.getUserEmail()
             vm.needsRefresh = true
         })
-        
+
     }
-
-    
-    
-
-
 
     func loadMessages() {
         let db = Firestore.firestore()
@@ -146,8 +136,7 @@ struct GroupView: View {
                 }
             }
     }
-    
-    
+
     func sendMessage() {
         let db = Firestore.firestore()
         db.collection("messages").addDocument(data: [
@@ -163,17 +152,17 @@ struct GroupView: View {
             }
         }
     }
-    
+
     func uploadFile(url: URL) {
         guard url.startAccessingSecurityScopedResource() else {
             // Handle the failure here according to your app's needs
             return
         }
-        
+
         defer { url.stopAccessingSecurityScopedResource() }
         let fileManager = FileManager.default
         let localURL = fileManager.temporaryDirectory.appendingPathComponent(url.lastPathComponent)
-        
+
         do {
             if fileManager.fileExists(atPath: localURL.path) {
                 try fileManager.removeItem(at: localURL)
@@ -183,7 +172,7 @@ struct GroupView: View {
             print("Failed to copy file: \(error)")
             return
         }
-        
+
         let storage = Storage.storage().reference().child("Objects/\(localURL.lastPathComponent)")
         storage.putFile(from: localURL, metadata: nil) { (_, error) in
             if let error = error {
@@ -200,21 +189,18 @@ struct GroupView: View {
             }
         }
     }
-    
+
     func fileExists(at url: URL) -> Bool {
         let path = url.path
         return FileManager.default.fileExists(atPath: path)
     }
-    
-    
-    
-    
+
 }
 struct FileMessageView: View {
     var message: Message
     @EnvironmentObject var vm: GroupViewModel
     @State var existEmoji = false
-    @State var selectedFile: IdentifiableURL? = nil
+    @State var selectedFile: IdentifiableURL?
 
     var body: some View {
         Button(action: {
@@ -236,21 +222,20 @@ struct FileMessageView: View {
             }
         }) {
             HStack {
-                VStack(alignment: .leading){
-                    
-                                                    Text(message.sender)
-                        .foregroundColor(Color.black)
-                                                
+                VStack(alignment: .leading) {
+
+                        Text(message.sender)
+                            .foregroundColor(Color.black)
+
                             .font(.custom("FallingSkyBd", size: 12))
-                 
-                            .padding(.bottom,5)
-                    
+
+                            .padding(.bottom, 5)
+
                     CustomLabel(text: "File", systemImage: self.existEmoji ? "eye" : "square.and.arrow.down")
                         .foregroundStyle(Color.black)
                 }
                 .padding()
                 .background(ChatBubble(isFromCurrentUser: false).fill(Color("BlueAccent2")))
-
 
                 .foregroundColor(.white)
                 .cornerRadius(10)
@@ -279,20 +264,18 @@ struct TextMessageView: View {
             }
         } else {
             HStack {
-                VStack(alignment: .leading){
-                  
-                                                    Text(message.sender)
+                VStack(alignment: .leading) {
+
+                    Text(message.sender)
                         .foregroundColor(Color.black)
                             .font(.custom("FallingSkyBd", size: 12))
-                          
-                            .padding(.bottom,5)
-                    
+                            .padding(.bottom, 5)
+
                     Text(message.content)
                         .foregroundStyle(Color.black)
                 }
                 .padding()
                 .background(ChatBubble(isFromCurrentUser: false).fill(Color("BlueAccent2")))
-
 
                 .foregroundColor(.white)
                 .cornerRadius(10)
@@ -309,17 +292,17 @@ struct ImageMessageView: View {
     @Binding var imageCount: Int
     var body: some View {
         if message.sender == Auth.auth().currentUser?.email {
-            
+
             HStack {
                 Spacer()
                 VStack {
-                    
+
                     AsyncImage(url: url) { image in
                         image.resizable()
                             .frame(width: UIScreen.main.bounds.size.width * 0.55, height: UIScreen.main.bounds.size.height * 0.33)
                             .scaledToFit()
                     } placeholder: {
-                        ZStack{
+                        ZStack {
                             Color.gray
                                 .frame(width: UIScreen.main.bounds.size.width * 0.55, height: UIScreen.main.bounds.size.height * 0.33)
                             Image(systemName: "photo")
@@ -337,14 +320,13 @@ struct ImageMessageView: View {
             }
         } else {
             HStack {
-                VStack(alignment: .leading){
-                    HStack{
-                       
+                VStack(alignment: .leading) {
+                    HStack {
+
                                                        Text(message.sender)
                             .foregroundColor(Color.black)
                                 .font(.custom("FallingSkyBd", size: 12))
-                               
-                        
+
                         Spacer()
                     }
                     AsyncImage(url: url) { image in
@@ -352,7 +334,7 @@ struct ImageMessageView: View {
                             .scaledToFit()
                             .frame(width: UIScreen.main.bounds.width * 0.7)
                     } placeholder: {
-                        ZStack{
+                        ZStack {
                             Color.gray
                                 .frame(width: UIScreen.main.bounds.size.width * 0.55, height: UIScreen.main.bounds.size.height * 0.33)
                             Image(systemName: "photo")
@@ -372,7 +354,7 @@ struct ImageMessageView: View {
 struct CustomLabel: View {
     var text: String
     var systemImage: String
-    
+
     var body: some View {
         HStack {
             Text(text)
@@ -380,9 +362,6 @@ struct CustomLabel: View {
         }
     }
 }
-
-
-
 
 #Preview {
     GroupView(groupId: "rg", messages: [Message(sender: "fr", content: "rgrg", isFile: true)])

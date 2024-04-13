@@ -9,11 +9,10 @@ import Foundation
 import FirebaseFirestore
 import SwiftUI
 
-enum ViewStack{
+enum ViewStack {
     case login
     case registration
 }
-
 
 struct ApiResponse: Decodable {
     struct Data: Decodable {
@@ -22,22 +21,15 @@ struct ApiResponse: Decodable {
     let data: Data
 }
 
-
-struct EmailVerification: Identifiable, Codable{
+struct EmailVerification: Identifiable, Codable {
     var id = UUID()
     var email: String
     var code: String
     var expiry: Timestamp
 }
 
-
-struct User: Identifiable, Codable{
+struct User: Identifiable, Codable {
     var id = UUID()
     var email: String
-  
+
 }
-
-
-
-
-

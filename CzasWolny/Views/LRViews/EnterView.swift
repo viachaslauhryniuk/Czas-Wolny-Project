@@ -11,8 +11,8 @@ struct EnterView: View {
     @ObservedObject var vm = EnterViewModel()
 
     var body: some View {
-        
-    NavigationStack{
+
+    NavigationStack {
             VStack {
                 Image("Logo1")
                     .resizable()
@@ -20,17 +20,17 @@ struct EnterView: View {
                     .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height * 0.55)
                     .clipped()
                     .padding(.bottom)
-                
-                VStack{
+
+                VStack {
                     Text("Jestes Studentem Politechniki Lodzkiej?")
                         .font(Font.custom("FallingSkyBd", size: 18 ))
-                        
+
                     Text("Zaloż konto już dziś!")
                         .font(.custom("FallingSkyBd", size: 30))
                         .foregroundStyle(Color("BlueAccent"))
                 }
                 .padding(.bottom, 25)
-                
+
                 Button {
                     vm.nextView = .registration
                     vm.showLogRegView.toggle()
@@ -42,8 +42,8 @@ struct EnterView: View {
                 .frame(width: 200, height: 60)
                 .background(Color("BlueAccent"))
                 .clipShape(.rect(cornerRadius: 15))
-                .padding(.bottom,5)
-                
+                .padding(.bottom, 5)
+
                 Button {
                     vm.nextView = .login
                     vm.showLogRegView.toggle()
@@ -52,7 +52,7 @@ struct EnterView: View {
                         .font(Font.custom("FallingSkyBd", size: 15))
                         .foregroundStyle(Color.black)
                 }
-                
+
             }
             .padding()
             .navigationDestination(isPresented: $vm.showLogRegView) {
@@ -62,13 +62,12 @@ struct EnterView: View {
                 case .registration:
                     RegisterView().environmentObject(vm)
                 }
-                
+
             }
             .navigationBarBackButtonHidden()
         }
     }
 }
-
 
 #Preview {
     EnterView()

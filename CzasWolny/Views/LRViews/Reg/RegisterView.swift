@@ -8,7 +8,7 @@ struct RegisterView: View {
     @Environment(\.dismiss)var dismiss
     @ObservedObject var vm = UsersViewModel()
     @State var cancellable: AnyCancellable?
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -27,7 +27,7 @@ struct RegisterView: View {
                             vm.textOpacity = 1.0
                         }
                     }
-                
+
                 // This is your instruction text.
                 Group {
                     Text("Wprowadz adres mailowy \n z koncowka")
@@ -40,8 +40,8 @@ struct RegisterView: View {
                 }
                 .multilineTextAlignment(.center)
                 .opacity(vm.textOpacity)
-                .offset(y:-50)
-                
+                .offset(y: -50)
+
                 // This is your email input field.
                 TextField("", text: $vm.email) { isEditing in
                     vm.isEditing = isEditing
@@ -51,32 +51,30 @@ struct RegisterView: View {
                 .padding(16)
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(vm.isEditing ? Color("BlueAccent") : Color.black, lineWidth: 2))
                 .animation(.easeInOut, value: vm.isEditing)
-                .padding(.horizontal,20)
-                .offset(y:-50)
+                .padding(.horizontal, 20)
+                .offset(y: -50)
                 .opacity(vm.textOpacity)
-                
+
                 // This is your button for submitting the form.
                 Button {
                     vm.isLoading = true
-                    if !vm.isValidEmail(vm.email){
+                    if !vm.isValidEmail(vm.email) {
                         vm.errorMessage = "Wprowadzony adres email jest nieprawidłowy lub nie należy do 'edu.p.lodz.pl'"
-                        DispatchQueue.main.asyncAfter(deadline: .now()+0.2){
+                        DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
                             vm.errorShow = true
                         }
                         vm.isLoading = false
-                    }
-                    else{
+                    } else {
                         vm.checkIfUserExists(completion: { status in
                             vm.existingStatus = status
-                            if vm.existingStatus == 1{
+                            if vm.existingStatus == 1 {
                                 vm.errorMessage = "Konto już istnieje"
-                                DispatchQueue.main.asyncAfter(deadline: .now()+0.2){
+                                DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
                                     vm.errorShow = true
                                 }
                                 vm.isLoading = false
                                 vm.email = ""
-                            }
-                            else{
+                            } else {
                                 // Only start the URLSession data task if no error has been shown
                                 if !vm.errorShow {
                                     let url = URL(string: "https://api.hunter.io/v2/email-verifier?email=\(vm.email)&api_key=5fcbeee2f1413e6ba1f0d979c71be8a35a81e4db")!
@@ -87,10 +85,9 @@ struct RegisterView: View {
                                         .sink(receiveCompletion: { _ in }, receiveValue: { response in
                                             if response.data.status != "valid" {
                                                 vm.errorMessage = "Wprowadzony adres email\n nie istnieje w ramach 'edu.p.lodz.pl'"
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){ vm.errorShow = true}
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { vm.errorShow = true}
                                                 vm.isLoading = false
-                                            }
-                                            else {
+                                            } else {
                                                 vm.verifiCode = true
                                                 vm.isLoading = false
                                             }
@@ -101,29 +98,30 @@ struct RegisterView: View {
                     }
 
                     }
-                
+
             label: {
                 Label("Done", systemImage: vm.isLoading ? "hourglass" : "arrowshape.right")
                     .labelStyle(.iconOnly)
-                    .font(.system(size: 27 , weight: .bold))
+                    .font(.system(size: 27, weight: .bold))
                     .foregroundStyle(Color.white)
             }
             .frame(width: 100, height: 60)
             .background(Color("BlueAccent"))
             .clipShape(.rect(cornerRadius: 15))
-            .padding(.bottom,5)
+            .padding(.bottom, 5)
             .opacity(vm.textOpacity)
             .alertX(isPresented: $vm.errorShow, content: {
-                AlertX(title: Text("Błąd"),message:Text (vm.errorMessage),theme: AlertX.Theme.custom(windowColor: Color.white,
-                                                                                                                                                                    alertTextColor: Color("BlueAccent"),
-                                                                                                                                                                    enableShadow: true,
-                                                                                                                                                                    enableRoundedCorners: true,
-                                                                                                                                                                    enableTransparency: false,
-                                                                                                                                                                    cancelButtonColor: Color("BlueAccent2"),
-                                                                                                                                                                    cancelButtonTextColor: Color.white,
-                                                                                                                                                                    defaultButtonColor: Color("BlueAccent2"),
-                                                                                                                                                                    defaultButtonTextColor: Color("BlueAccent"),
-                                                                                                                                                                    roundedCornerRadius: 20),
+                AlertX(title: Text("Błąd"),
+                       message: Text(vm.errorMessage),
+                       theme: AlertX.Theme.custom(windowColor: Color.white, alertTextColor: Color("BlueAccent"),
+                       enableShadow: true,
+                       enableRoundedCorners: true,
+                       enableTransparency: false,
+                       cancelButtonColor: Color("BlueAccent2"),
+                       cancelButtonTextColor: Color.white,
+                       defaultButtonColor: Color("BlueAccent2"),
+                       defaultButtonTextColor: Color("BlueAccent"),
+                       roundedCornerRadius: 20),
                        animation: .classicEffect()
                 )
             })
@@ -138,8 +136,7 @@ struct RegisterView: View {
                         vm.logoOffset = 0.0
                         vm.textOpacity = 0.0
                         dismiss()
-                    })
-                    {
+                    }) {
                         Image(systemName: "chevron.left")
                     }
                 }
@@ -150,7 +147,7 @@ struct RegisterView: View {
             EmailConfirmationView()
                 .presentationDetents([.fraction(0.4)])
                 .environmentObject(vm)
-               
+
         }
     }
 }

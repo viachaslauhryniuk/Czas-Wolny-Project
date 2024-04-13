@@ -2,20 +2,19 @@ import FirebaseFirestore
 import Foundation
 import FirebaseAuth
 import SwiftUI
-final class GroupViewModel: ObservableObject
-{
+final class GroupViewModel: ObservableObject {
     @Published  var groupName = ""
     @Published  var memberEmail = ""
     @Published var creatorEmail = ""
-    @Published var groups:[String] = []
+    @Published var groups: [String] = []
     @Published var members: [String] = []
     @Published var existingStatus: Int = -1
     @Published var alertMessage = ""
     @Published var showAlert = false
     @Published var needsRefresh = false
     let db = Firestore.firestore()
-    
-    func getUserEmail(){
+
+    func getUserEmail() {
         if let user = Auth.auth().currentUser {
             self.creatorEmail = user.email!
         } else {
@@ -25,7 +24,7 @@ final class GroupViewModel: ObservableObject
     func checkIfUserExists(completion: @escaping (Int) -> Void) {
         let db = Firestore.firestore()
            db.collection("registeredEmails").whereField("email", isEqualTo: memberEmail)
-               .getDocuments() { (querySnapshot, err) in
+               .getDocuments { (querySnapshot, err) in
                    if let err = err {
                        print("Error getting documents: \(err)")
                    } else if querySnapshot!.documents.count != 0 {
@@ -37,7 +36,7 @@ final class GroupViewModel: ObservableObject
        }
     func createGroup() {
            let db = Firestore.firestore()
-           
+
             var allMembers = members
             allMembers.append(creatorEmail)
            db.collection("group").addDocument(data: [
@@ -53,7 +52,7 @@ final class GroupViewModel: ObservableObject
        }
     func loadGroups() {
         let db = Firestore.firestore()
-        db.collection("group").whereField("members", arrayContains: creatorEmail).getDocuments() { (querySnapshot, err) in
+        db.collection("group").whereField("members", arrayContains: creatorEmail).getDocuments { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -62,9 +61,5 @@ final class GroupViewModel: ObservableObject
             }
         }
     }
-    
-    
+
         }
-
-
-

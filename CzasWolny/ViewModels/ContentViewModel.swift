@@ -1,26 +1,25 @@
-
 import SwiftUI
 import Foundation
 import Combine
 import FirebaseFirestore
 import UserNotifications
 import FirebaseAuth
-final class ContentViewModel: ObservableObject{
- 
+final class ContentViewModel: ObservableObject {
+
  // MARK: Joint Variables
     @Published var tasks: [Task] = []
-    @Published var deletedTasks: [Task] = []{
-        didSet{
+    @Published var deletedTasks: [Task] = [] {
+        didSet {
             let encoder = JSONEncoder()
-            if let encoded = try? encoder.encode(deletedTasks){
+            if let encoded = try? encoder.encode(deletedTasks) {
                 UserDefaults.standard.set(encoded, forKey: "DeletedTasks")
             }
-            
+
         }
     }
     @Published var isChatViewActive = false
 
-    @Published var activeTab:Tab = .groups
+    @Published var activeTab: Tab = .groups
     @Published var selectedYear = 1
     @Published var selectGroup = 1
     @Published var selectedSpeciality = "IO"
@@ -31,11 +30,8 @@ final class ContentViewModel: ObservableObject{
     @Published var specialities = ["EAiBD", "TI", "IO"]
     @Published var email = ""
     @AppStorage ("selectedGroup") var selectedGroup: String = ""
-    
-    
-    
-    
-    init(){
+
+    init() {
    //    checkUser()
         if let savedItems = UserDefaults.standard.data(forKey: "DeletedTasks"),
            let decodedItems = try? JSONDecoder().decode([Task].self, from: savedItems) {
@@ -45,14 +41,14 @@ final class ContentViewModel: ObservableObject{
         }
       // self.selectedGroup = UserDefaults.standard.string(forKey: "\(email)selectedGroup") ?? ""
     }
-    func checkUser(){
+    func checkUser() {
         if let user = Auth.auth().currentUser {
             self.email = user.email!
         } else {
         // No user is signed in.
         }
     }
-    
+
     func fetchTasks() {
         let db = Firestore.firestore()
         let tasksRef = db.collection("tasks")
@@ -76,10 +72,10 @@ final class ContentViewModel: ObservableObject{
             }
         }
     }
-    
+
     func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
-            formatter.locale = Locale(identifier: "pl_PL") 
+            formatter.locale = Locale(identifier: "pl_PL")
             formatter.dateStyle = .medium
             formatter.timeStyle = .medium
             return formatter.string(from: date)
@@ -100,10 +96,10 @@ final class ContentViewModel: ObservableObject{
         let request = UNNotificationRequest(identifier: task.id.uuidString, content: content, trigger: trigger)
         center.add(request)
     }
-    
-    func notificationpermission(){
+
+    func notificationpermission() {
         let center = UNUserNotificationCenter.current()
-        
+
         center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
             if granted {
                 print("Notification permission granted.")
@@ -120,10 +116,3 @@ final class ContentViewModel: ObservableObject{
     }
 
     }
-
-
-
-
-
-
-

@@ -31,7 +31,7 @@ class ImageLoader: ObservableObject {
             return
         }
 
-        URLSession.shared.dataTask(with: imageUrl) { (data, response, error) in
+        URLSession.shared.dataTask(with: imageUrl) { (data, _, _) in
             guard let data = data else {
                 return
             }
@@ -41,8 +41,6 @@ class ImageLoader: ObservableObject {
         }.resume()
     }
 }
-
-
 
 class ScheduleLoader: ObservableObject {
     var schedules: [String: String] = [:]
