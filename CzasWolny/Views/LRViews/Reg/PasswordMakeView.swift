@@ -42,11 +42,11 @@ struct PasswordMakeView: View {
 
                     // This is your button for toggling the visibility of the password tips.
                     HStack {
-                        Button(action: {
+                        Button {
                             withAnimation {
                                 vm.showTips.toggle()
                             }
-                        }) {
+                        } label: {
                             Image(systemName: vm.showTips ? "chevron.up" : "chevron.down")
                                 .scaleEffect(2)
                                 .foregroundStyle(Color("BlueAccent"))

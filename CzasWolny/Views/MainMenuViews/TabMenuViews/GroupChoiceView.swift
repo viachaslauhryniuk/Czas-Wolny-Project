@@ -69,9 +69,9 @@ struct SelectButton: View {
     @EnvironmentObject var vm: ContentViewModel
 
     var body: some View {
-        Button(action: {
+        Button {
             vm.updateSelectedGroup()
-        }) {
+        } label: {
             Text("Wybierz grupę")
             .font(.custom("FallingSkyBlk", size: 27))
             .foregroundStyle(Color.white)

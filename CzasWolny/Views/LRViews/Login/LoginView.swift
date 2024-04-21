@@ -40,7 +40,7 @@ struct LoginView: View {
                     .changeEffect(.shake(rate: .fast), value: vm.shakeEffect)
                     .offset(y: -50)
                     .opacity(vm.textOpacity)
-                    Button(action: {
+                    Button {
                         vm.signInUser(completion: { status in
                             vm.verificationStatus = status
                             if vm.verificationStatus == 1 {
@@ -56,7 +56,7 @@ struct LoginView: View {
 
                                 vm.transfer = true
                             }
-                        })}) {
+                        })} label: {
                         Text("Login")
                             .font(.custom("FallingSkyBlk", size: 18))
                             .foregroundColor(.white)
@@ -91,14 +91,14 @@ struct LoginView: View {
 
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        Button(action: {
+                        Button {
                             vm.email = ""
                             vm.password = ""
                             vm.logoScale = 1.3
                             vm.logoOffset = 0.0
                             vm.textOpacity = 0.0
                             dismiss()
-                        }) {
+                        } label: {
                             Image(systemName: "chevron.backward")
                         }
                     }

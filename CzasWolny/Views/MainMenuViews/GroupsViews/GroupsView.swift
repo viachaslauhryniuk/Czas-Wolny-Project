@@ -49,7 +49,7 @@ struct GroupsView: View {
                     .foregroundColor(Color("BlueAccent"))
                     .font(.title)
                     .imageScale(.small)
-            }, trailing: Button(action: {
+            }, trailing: Button {
                 if !isLoggedOut {
                     do {
                         try Auth.auth().signOut()
@@ -59,7 +59,7 @@ struct GroupsView: View {
                     } catch let signOutError as NSError {
                         print("Error signing out: %@", signOutError)
                     }
-                } else {}}) {
+                } else {}} label: {
                     Image(systemName: "rectangle.portrait.and.arrow.right.fill")
                         .foregroundColor(Color("BlueAccent"))
                 })

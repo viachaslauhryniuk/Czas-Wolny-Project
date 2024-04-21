@@ -60,9 +60,9 @@ struct GroupView: View {
                 .cornerRadius(10)
                 .padding(.horizontal)
 
-            Button(action: {
+            Button {
                 self.isShowingFilePicker = true
-            }) {
+            } label: {
                 Image(systemName: "square.and.arrow.up.fill")
                     .imageScale(.large)
             }
@@ -96,14 +96,14 @@ struct GroupView: View {
 
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button(action: {
+                Button {
                     vm2.isChatViewActive = false
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                         dismiss()
 
                     }
 
-                }) {
+                } label: {
                     Image(systemName: "chevron.left")
 
                 }
@@ -129,9 +129,11 @@ struct GroupView: View {
                 } else {
                     self.messages = querySnapshot!.documents.compactMap { doc in
                         let sender = doc["sender"] as? String ?? ""
+                        let index = sender.firstIndex(of: "@")
+                        let newSender = String(sender[..<index!])
                         let content = doc["content"] as? String ?? ""
                         let isFile = URL(string: content)?.scheme != nil
-                        return Message(sender: sender, content: content, isFile: isFile)
+                        return Message(sender: newSender, content: content, isFile: isFile)
                     }
                 }
             }
@@ -203,7 +205,7 @@ struct FileMessageView: View {
     @State var selectedFile: IdentifiableURL?
 
     var body: some View {
-        Button(action: {
+        Button {
             let url = URL(string: message.content)!
             let localURL = FileManager.default.temporaryDirectory.appendingPathComponent(url.lastPathComponent)
             if FileManager.default.fileExists(atPath: localURL.path) {
@@ -220,26 +222,43 @@ struct FileMessageView: View {
                     }
                 }
             }
-        }) {
-            HStack {
-                VStack(alignment: .leading) {
-
+        } label: {
+            if "\(message.sender)@edu.p.lodz.pl" == Auth.auth().currentUser?.email {
+                Spacer()
+                HStack {
+                        CustomLabel(text: "File", systemImage: self.existEmoji ? "eye" : "square.and.arrow.down")
+                            .foregroundStyle(Color.white)
+                    }
+                    .padding()
+              
+                    .background(ChatBubble(isFromCurrentUser: true).fill(Color("BlueAccent")))
+                    
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+             } else {
+                HStack {
+                  
+                    VStack(alignment: .leading) {
+                        
                         Text(message.sender)
                             .foregroundColor(Color.black)
-
+                        
                             .font(.custom("FallingSkyBd", size: 12))
-
+                        
                             .padding(.bottom, 5)
-
-                    CustomLabel(text: "File", systemImage: self.existEmoji ? "eye" : "square.and.arrow.down")
-                        .foregroundStyle(Color.black)
+                        
+                        CustomLabel(text: "File", systemImage: self.existEmoji ? "eye" : "square.and.arrow.down")
+                            .foregroundStyle(Color.black)
+                    }
+                    
+                    .padding()
+                    .background(ChatBubble(isFromCurrentUser: false).fill(Color("BlueAccent2")))
+                    
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                   
                 }
-                .padding()
-                .background(ChatBubble(isFromCurrentUser: false).fill(Color("BlueAccent2")))
-
-                .foregroundColor(.white)
-                .cornerRadius(10)
-                Spacer()
+                 Spacer()
             }
         }
         .sheet(item: $selectedFile) { identifiableURL in
@@ -251,32 +270,37 @@ struct FileMessageView: View {
 struct TextMessageView: View {
     var message: Message
     @EnvironmentObject var vm: GroupViewModel
-
+    let screenW = UIScreen.main.bounds.size.width
     var body: some View {
-        if message.sender == Auth.auth().currentUser?.email {
+        if "\(message.sender)@edu.p.lodz.pl" == Auth.auth().currentUser?.email {
             HStack {
                 Spacer()
                 Text("\(message.content)")
+                    .frame(width: message.content.count > 33 ? screenW * 0.70 : message.content.count > 9 ? screenW * 0.40 : screenW * 0.20)
                     .padding()
                     .background(ChatBubble(isFromCurrentUser: true).fill(Color("BlueAccent")))
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
+            
         } else {
             HStack {
-                VStack(alignment: .leading) {
-
-                    Text(message.sender)
-                        .foregroundColor(Color.black)
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(message.sender)
+                            .foregroundColor(Color.black)
                             .font(.custom("FallingSkyBd", size: 12))
                             .padding(.bottom, 5)
-
-                    Text(message.content)
-                        .foregroundStyle(Color.black)
+                        
+                        Text(message.content)
+                            .foregroundStyle(Color.black)
+                    }
+                    Spacer()
+                 
                 }
+                .frame(width: message.content.count > 33 ? screenW * 0.70 : message.content.count > 9 ? screenW * 0.40 : screenW * 0.20)
                 .padding()
                 .background(ChatBubble(isFromCurrentUser: false).fill(Color("BlueAccent2")))
-
                 .foregroundColor(.white)
                 .cornerRadius(10)
                 Spacer()
@@ -291,7 +315,7 @@ struct ImageMessageView: View {
     @EnvironmentObject var vm: GroupViewModel
     @Binding var imageCount: Int
     var body: some View {
-        if message.sender == Auth.auth().currentUser?.email {
+        if "\(message.sender)@edu.p.lodz.pl" == Auth.auth().currentUser?.email {
 
             HStack {
                 Spacer()

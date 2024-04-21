@@ -130,13 +130,13 @@ struct RegisterView: View {
             .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {
+                    Button {
                         vm.email = ""
                         vm.logoScale = 1.3
                         vm.logoOffset = 0.0
                         vm.textOpacity = 0.0
                         dismiss()
-                    }) {
+                    } label: {
                         Image(systemName: "chevron.left")
                     }
                 }
